@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DAA-1147-PEARTO</title>
+<meta name="description" content="Directorate of Anomalous Antiquities - consolidated dossier on the entity designated PEARTO. A work of fiction.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: light dark;
+  --paper:#f1e8d3;
+  --paper-2:#e7dcc0;
+  --paper-3:#dccfad;
+  --ink:#1e1c16;
+  --ink-2:#4c4636;
+  --ink-3:#7d7458;
+  --rule:#b6a988;
+  --rule-soft:#cfc3a3;
+  --stamp:#96201f;
+  --stamp-2:#28497e;
+  --redact:#14120e;
+  --accent:#7b5c1c;
+  --shadow:0 24px 70px rgba(45,35,15,.30);
+  --grain:rgba(90,70,35,.05);
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --serif:"IBM Plex Serif",Georgia,"Times New Roman",serif;
+  --type:"Special Elite","Courier New",var(--mono);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#15140f;
+    --paper-2:#1c1a14;
+    --paper-3:#25221a;
+    --ink:#e8dfc6;
+    --ink-2:#bdb195;
+    --ink-3:#8d8368;
+    --rule:#433d2d;
+    --rule-soft:#332e22;
+    --stamp:#d4534f;
+    --stamp-2:#7ea3d8;
+    --redact:#000000;
+    --accent:#d3a94e;
+    --shadow:0 24px 70px rgba(0,0,0,.6);
+    --grain:rgba(220,200,150,.035);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#15140f; --paper-2:#1c1a14; --paper-3:#25221a;
+  --ink:#e8dfc6; --ink-2:#bdb195; --ink-3:#8d8368;
+  --rule:#433d2d; --rule-soft:#332e22;
+  --stamp:#d4534f; --stamp-2:#7ea3d8; --redact:#000000; --accent:#d3a94e;
+  --shadow:0 24px 70px rgba(0,0,0,.6); --grain:rgba(220,200,150,.035);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:74px}
+body{
+  margin:0;
+  background:
+    radial-gradient(1200px 700px at 18% -10%, var(--paper-2), transparent 60%),
+    radial-gradient(900px 600px at 95% 8%, var(--paper-3), transparent 55%),
+    var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:16px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+  background-image:
+    repeating-linear-gradient(0deg,var(--grain) 0 1px,transparent 1px 3px),
+    repeating-linear-gradient(90deg,var(--grain) 0 1px,transparent 1px 4px);
+  opacity:.9;mix-blend-mode:multiply;
+}
+@media (prefers-color-scheme: dark){body::before{mix-blend-mode:screen}}
+:root[data-theme="dark"] body::before{mix-blend-mode:screen}
+
+.banner{
+  position:fixed;left:0;right:0;z-index:40;
+  background:var(--stamp);color:#fff;
+  font-family:var(--mono);font-weight:600;font-size:12px;letter-spacing:.22em;
+  text-align:center;padding:7px 12px;text-transform:uppercase;
+  box-shadow:0 2px 14px rgba(0,0,0,.25);
+}
+.banner.top{top:0}
+.banner.bot{bottom:0}
+.banner span{opacity:.72;font-weight:400}
+@media (max-width:640px){.banner{font-size:9px;letter-spacing:.1em;padding:6px 8px}}
+
+.sheet{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:74px 26px 96px}
+.paperwrap{
+  position:relative;
+  background:linear-gradient(180deg,var(--paper-2),var(--paper));
+  border:1px solid var(--rule);
+  box-shadow:var(--shadow);
+  padding:clamp(22px,4.4vw,60px);
+  margin:26px 0 0;
+}
+.paperwrap::after{content:"";position:absolute;inset:6px;border:1px solid var(--rule-soft);pointer-events:none}
+
+.crest{display:flex;gap:22px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.crest-id{display:flex;gap:18px;align-items:center}
+.seal{width:78px;height:78px;flex:0 0 78px}
+.agency{font-family:var(--mono);text-transform:uppercase}
+.agency b{display:block;font-size:15px;letter-spacing:.16em;font-weight:600}
+.agency small{display:block;font-size:11px;letter-spacing:.2em;color:var(--ink-3);margin-top:4px}
+.filecode{font-family:var(--mono);font-size:12px;text-align:right;color:var(--ink-2);letter-spacing:.06em;line-height:1.9}
+.filecode b{color:var(--ink)}
+
+hr.rule{border:0;border-top:2px solid var(--ink);margin:20px 0 0;opacity:.75}
+hr.rule.thin{border-top:1px solid var(--rule);opacity:1;margin:14px 0}
+
+h1.title{
+  font-family:var(--type);
+  font-size:clamp(34px,7.4vw,68px);
+  line-height:1.02;letter-spacing:.03em;margin:26px 0 8px;text-transform:uppercase;
+}
+.subtitle{font-family:var(--mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin:0 0 4px}
+.byline{font-family:var(--mono);font-size:12px;color:var(--ink-3);letter-spacing:.08em}
+
+.stamp{
+  display:inline-block;font-family:var(--mono);font-weight:600;text-transform:uppercase;
+  letter-spacing:.16em;font-size:12px;color:var(--stamp);
+  border:2.5px solid var(--stamp);padding:8px 14px;border-radius:3px;
+  transform:rotate(-4deg);opacity:.88;
+}
+.stamp.blue{color:var(--stamp-2);border-color:var(--stamp-2);transform:rotate(2.5deg)}
+.stamp.sm{font-size:10px;padding:5px 9px;letter-spacing:.12em;border-width:2px}
+.stamprow{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin:24px 0 0}
+
+.control{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  border:1px solid var(--rule);margin:26px 0 0;font-family:var(--mono);font-size:12px;
+}
+.control div{padding:11px 13px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.control k{display:block;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:5px}
+.control v{display:block;font-weight:500;letter-spacing:.04em}
+
+.cols{display:grid;grid-template-columns:210px minmax(0,1fr);gap:44px;align-items:start;margin-top:44px}
+@media (max-width:900px){.cols{grid-template-columns:1fr;gap:22px}}
+nav.index{position:sticky;top:86px;font-family:var(--mono);font-size:11.5px}
+@media (max-width:900px){nav.index{position:static;border:1px solid var(--rule);padding:14px 16px;background:var(--paper-2)}}
+nav.index h4{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-3);margin:0 0 10px;font-family:var(--mono);font-weight:600}
+nav.index a{display:block;color:var(--ink-2);text-decoration:none;padding:3.5px 0;border-bottom:1px dotted var(--rule-soft)}
+nav.index a:hover{color:var(--stamp)}
+nav.index a b{color:var(--ink-3);font-weight:500;margin-right:7px}
+
+section{margin:0 0 54px;scroll-margin-top:80px}
+h2{
+  font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  margin:0 0 14px;padding-bottom:9px;border-bottom:2px solid var(--ink);display:flex;gap:12px;align-items:baseline;
+}
+h2 em{font-style:normal;color:var(--stamp);font-size:12px;letter-spacing:.1em;flex:0 0 auto}
+h3{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);margin:30px 0 8px}
+p{margin:0 0 14px}
+.lede{font-size:17.5px;line-height:1.6}
+.lede::first-letter{float:left;font-family:var(--type);font-size:56px;line-height:.82;padding:6px 10px 0 0;color:var(--stamp)}
+
+ul.dash{list-style:none;padding:0;margin:0 0 16px}
+ul.dash li{padding-left:22px;position:relative;margin:0 0 7px}
+ul.dash li::before{content:"\2014";position:absolute;left:0;color:var(--ink-3)}
+ol.legal{padding-left:22px}
+ol.legal li{margin:0 0 9px}
+
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);margin:0 0 18px;background:var(--paper-2)}
+table{border-collapse:collapse;width:100%;font-family:var(--mono);font-size:12px;min-width:540px}
+caption{
+  caption-side:top;text-align:left;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink-3);padding:10px 12px;border-bottom:1px solid var(--rule);background:var(--paper-3)
+}
+th{
+  text-align:left;font-weight:600;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  padding:9px 12px;border-bottom:1.5px solid var(--ink);color:var(--ink-2);white-space:nowrap;vertical-align:bottom
+}
+td{padding:9px 12px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+tbody tr:nth-child(even){background:color-mix(in srgb,var(--paper-3) 45%,transparent)}
+tbody tr:last-child td{border-bottom:0}
+td.n{white-space:nowrap;color:var(--ink-3)}
+
+blockquote.test{
+  margin:0 0 22px;padding:18px 20px 16px;border-left:3px solid var(--stamp);
+  background:color-mix(in srgb,var(--paper-3) 55%,transparent);
+}
+blockquote.test p{font-family:var(--serif);font-style:italic;font-size:16.5px;margin:0 0 12px}
+blockquote.test cite{display:block;font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink-2)}
+blockquote.test cite b{color:var(--ink);letter-spacing:.06em}
+blockquote.test .src{display:block;margin-top:6px;font-size:10px;color:var(--ink-3);letter-spacing:.05em}
+
+.redact{
+  background:var(--redact);color:transparent;user-select:none;border-radius:1px;
+  padding:0 .28em;cursor:not-allowed;position:relative;
+}
+.redact::after{
+  content:attr(data-deny);position:absolute;left:50%;top:-32px;transform:translateX(-50%);
+  background:var(--stamp);color:#fff;font-family:var(--mono);font-size:9px;letter-spacing:.14em;
+  padding:4px 8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;text-transform:uppercase;z-index:5;
+}
+.redact:hover::after{opacity:1}
+.blackbar{display:block;height:13px;background:var(--redact);margin:9px 0;border-radius:1px}
+.blackbar.w70{width:70%}.blackbar.w45{width:45%}.blackbar.w88{width:88%}
+
+.caution{
+  border:2px solid var(--stamp);padding:16px 18px;margin:0 0 20px;
+  background:color-mix(in srgb,var(--stamp) 7%,transparent);
+}
+.caution h4{margin:0 0 8px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--stamp)}
+.caution p{margin:0 0 8px;font-size:14.5px}
+.caution p:last-child{margin:0}
+
+.marginal{
+  font-family:var(--type);font-size:14px;color:var(--stamp);
+  transform:rotate(-1.1deg);border-left:2px solid color-mix(in srgb,var(--stamp) 45%,transparent);
+  padding:6px 0 6px 14px;margin:0 0 22px;line-height:1.45;
+}
+.marginal small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--ink-3);margin-top:6px;transform:rotate(.6deg)}
+
+.souls{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:0 0 20px}
+.soul{background:var(--paper-2);padding:16px 17px}
+.soul k{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--stamp);margin-bottom:6px}
+.soul h5{margin:0 0 7px;font-family:var(--type);font-size:19px;letter-spacing:.02em;font-weight:400}
+.soul p{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+
+.plates{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:18px;margin:0 0 20px}
+.plate{border:1px solid var(--rule);background:var(--paper-2);padding:14px;margin:0}
+.plate svg{width:100%;height:auto;max-width:150px;display:block;margin:0 auto 12px}
+.plate figcaption{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--ink-3);line-height:1.6}
+.plate figcaption b{display:block;color:var(--ink-2);letter-spacing:.16em;margin-bottom:3px}
+
+ol.refs{padding-left:26px;font-family:var(--mono);font-size:12px;line-height:1.75;color:var(--ink-2)}
+ol.refs li{margin:0 0 11px;padding-left:4px}
+ol.refs i{color:var(--ink)}
+
+.sigs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px;margin:34px 0 0}
+.sig{border-top:1px solid var(--ink);padding-top:8px;font-family:var(--mono);font-size:11px;color:var(--ink-2);letter-spacing:.05em}
+.sig .scrawl{font-family:var(--type);font-size:21px;color:var(--stamp-2);transform:rotate(-2.4deg);margin:0 0 10px;opacity:.88}
+.sig b{display:block;color:var(--ink);letter-spacing:.1em}
+
+footer.doc{
+  margin:44px auto 0;max-width:1080px;padding:0 26px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--ink-3);line-height:1.85
+}
+footer.doc .fiction{border:1px dashed var(--rule);padding:14px 16px;margin:0 0 18px;color:var(--ink-2);letter-spacing:.04em}
+footer.doc .fiction b{color:var(--ink);letter-spacing:.14em;text-transform:uppercase;font-size:9.5px;display:block;margin-bottom:5px}
+
+.pagefoot{
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  border-top:1px solid var(--rule);margin-top:34px;padding-top:10px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)
+}
+
+.toggle{
+  position:fixed;right:14px;top:44px;z-index:45;
+  background:var(--paper-2);color:var(--ink-2);border:1px solid var(--rule);
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  padding:6px 10px;cursor:pointer;border-radius:2px;
+}
+.toggle:hover{color:var(--stamp);border-color:var(--stamp)}
+@media (max-width:640px){.toggle{top:36px;right:8px;font-size:8.5px;padding:5px 7px}}
+
+@media print{
+  .banner,.toggle,nav.index{display:none}
+  body{background:#fff;color:#000}
+  .sheet{padding:0;max-width:none}
+  .paperwrap{box-shadow:none;border:1px solid #000}
+  section{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="banner top">Top Secret <span>//</span> Orchard Seal <span>//</span> NOFORN <span>//</span> ORCON <span>&mdash;</span> Handle via Cataloguing Channels Only</div>
+<button class="toggle" id="themeBtn" type="button">Microfilm</button>
+
+<main class="sheet">
+  <div class="paperwrap">
+
+    <!-- ============ MASTHEAD ============ -->
+    <header>
+      <div class="crest">
+        <div class="crest-id">
+          <svg class="seal" viewBox="0 0 100 100" role="img" aria-label="Departmental seal: a pear-shaped sigil within a ring of glyphs">
+            <circle cx="50" cy="50" r="47" fill="none" stroke="currentColor" stroke-width="1.6" opacity=".85"/>
+            <circle cx="50" cy="50" r="41" fill="none" stroke="currentColor" stroke-width=".8" opacity=".5"/>
+            <g opacity=".55" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
+              <path d="M50 6.5v5M50 88.5v5M6.5 50h5M88.5 50h5M20 20l3.4 3.4M76.6 76.6L80 80M80 20l-3.4 3.4M23.4 76.6L20 80"/>
+            </g>
+            <path d="M50 24c-4 0-6.6 3.2-6.6 6.6 0 2.6 1 4 1 5.6 0 3.2-9.6 6.2-9.6 19.4 0 12.4 7.2 20.4 15.2 20.4S65.2 68 65.2 55.6c0-13.2-9.6-16.2-9.6-19.4 0-1.6 1-3 1-5.6 0-3.4-2.6-6.6-6.6-6.6z" fill="none" stroke="currentColor" stroke-width="1.7"/>
+            <circle cx="44.4" cy="52" r="1.9" fill="currentColor"/>
+            <circle cx="55.6" cy="52" r="1.9" fill="currentColor"/>
+            <path d="M43 62.5c2.4 2.6 11.6 2.6 14 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M46.6 45.4c1.4-1.2 3-1.2 4.2-.4M53 45c1.4-1.2 3-1 4.2-.2" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".8"/>
+          </svg>
+          <div class="agency">
+            <b>Directorate of Anomalous Antiquities</b>
+            <small>Section 7 &middot; Comparative Iconography Branch</small>
+          </div>
+        </div>
+        <div class="filecode">
+          FILE <b>DAA&#8209;1147&#8209;PEARTO</b><br>
+          COPY <b>014 of 019</b><br>
+          REV. <b>H (consolidated)</b>
+        </div>
+      </div>
+
+      <hr class="rule">
+
+      <p class="subtitle" style="margin-top:26px">Consolidated Entity Dossier &middot; Working Designation</p>
+      <h1 class="title">Pearto</h1>
+      <p class="byline">Compiled by the Comparative Iconography Branch from field reporting, museum accession records and non&#8209;attributable acquisitions, 1957&ndash;2024. Supersedes DAA&#8209;1147 Rev. G in its entirety.</p>
+
+      <div class="stamprow">
+        <span class="stamp">Top Secret &mdash; Orchard Seal</span>
+        <span class="stamp blue sm">Copy Not for Reproduction</span>
+        <span class="stamp sm">Declass. Review Deferred &mdash; 2071</span>
+      </div>
+
+      <div class="control">
+        <div><k>Designation</k><v>PEARTO (working)</v></div>
+        <div><k>Registry Class</k><v>Persistent Iconographic Anomaly</v></div>
+        <div><k>Containment Status</k><v>UNCONTAINED / DORMANT&nbsp;(assumed)</v></div>
+        <div><k>Threat Rating</k><v>OMEGA&#8209;PRIME</v></div>
+        <div><k>Attestation Span</k><v>c. 3200 BCE &ndash; present</v></div>
+        <div><k>Confidence</k><v>Moderate&ndash;High (corroborated)</v></div>
+        <div><k>Originating Office</k><v>DAA/S7/CIB</v></div>
+        <div><k>Date of Issue</k><v>14 FEB 2026</v></div>
+      </div>
+    </header>
+
+    <div class="cols">
+
+      <!-- ============ INDEX ============ -->
+      <nav class="index" aria-label="Document contents">
+        <h4>Contents</h4>
+        <a href="#s1"><b>1.0</b>Summary</a>
+        <a href="#s2"><b>2.0</b>Designation &amp; Aliases</a>
+        <a href="#s3"><b>3.0</b>Comparative Nomenclature</a>
+        <a href="#s4"><b>4.0</b>Morphology</a>
+        <a href="#s5"><b>5.0</b>The Seven Souls</a>
+        <a href="#s6"><b>6.0</b>Attestation Record</a>
+        <a href="#s7"><b>7.0</b>Field Testimony</a>
+        <a href="#s8"><b>8.0</b>Incident Log</a>
+        <a href="#s9"><b>9.0</b>Handling Protocol</a>
+        <a href="#s10"><b>10.0</b>Threat Assessment</a>
+        <a href="#s11"><b>11.0</b>Intelligence Gaps</a>
+        <a href="#a1"><b>A</b>Glyph Inventory</a>
+        <a href="#a2"><b>B</b>Transcript Extract</a>
+        <a href="#refs"><b>C</b>References</a>
+      </nav>
+
+      <!-- ============ BODY ============ -->
+      <div>
+
+        <section id="s1">
+          <h2><em>1.0</em> Summary of Findings</h2>
+          <p class="lede">Over sixty&#8209;seven years of accumulated field reporting, this Directorate has catalogued a single iconographic motif recurring across at least nineteen unconnected cultural horizons, on four continents, in strata separated by as much as five millennia. The motif is consistently associated with an entity possessing apparent intelligence, apparent personality, and &mdash; without a single documented exception &mdash; apparent malice.</p>
+
+          <p>The material recovered to date consists of engravings, reliefs, votive figurines, incantation bowls, marginal annotations, one damaged codex fragment, and two categories of object the Branch declines to characterise in an unrestricted paragraph. Individually, every item is dismissible. A pear&#8209;shaped figure is not a difficult shape to arrive at independently. What is not dismissible is the accompanying text.</p>
+
+          <p>Across all nineteen horizons, the entity is described in terms drawn from the same narrow semantic field: sovereignty without legitimacy, intolerance without provocation, and correctness without appeal. No culture in the corpus records it as a patron, an ancestor, a bringer of harvest, or a friend. Not one. In a corpus of this size, that uniformity is itself the anomaly. Deities are almost always ambivalent; PEARTO is not.</p>
+
+          <p>The Branch assesses with moderate&#8209;to&#8209;high confidence that the corpus does not describe nineteen independent inventions of a similar figure, and that the coincidences are too numerous to be attributed to convergent iconography alone. Whether the referent is an entity, a recurring event, or a transmissible idea remains the central unresolved question of this file.</p>
+
+          <div class="caution">
+            <h4>Handling Caveat &mdash; Read Before Proceeding</h4>
+            <p>Personnel are reminded that Section 9.4 prohibits reproduction of Plate&nbsp;III by hand. Machine reproduction, as used in this document, is permitted. The distinction is not aesthetic.</p>
+            <p>Reading the reconstructed vocative forms in &sect;3.0 aloud is discouraged. This is a procedural precaution and should not be construed as an endorsement of the Marchetti hypothesis.</p>
+          </div>
+        </section>
+
+        <section id="s2">
+          <h2><em>2.0</em> Designation &amp; Recorded Aliases</h2>
+          <p>The working designation PEARTO is a Branch convenience, coined in 1984 from the Latinate transliteration <i>Pir&#8209;tu</i> attested in the Nippur incantation series (Ref.&nbsp;4) and the dominant morphological feature of the figure. It is not an attested name and carries no operational meaning. Personnel should be aware that the corpus contains no name for the entity that is not also an epithet &mdash; a pattern the Branch considers significant and addresses in &sect;5.0.</p>
+
+          <div class="tablewrap">
+            <table>
+              <caption>Table 2.1 &mdash; Principal aliases, by frequency of attestation</caption>
+              <thead>
+                <tr><th>Epithet</th><th>Earliest Attestation</th><th>Horizon</th><th>Count</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><b>The Sovereign Creature</b></td><td class="n">c. 2400 BCE</td><td>Akkadian incantation</td><td class="n">31</td></tr>
+                <tr><td><b>The Horrible Creature</b></td><td class="n">c. 1600 BCE</td><td>Aegean funerary panel</td><td class="n">44</td></tr>
+                <tr><td><b>Ancestor of Chaos</b></td><td class="n">c. 1200 BCE</td><td>Gulf&#8209;coast basalt frag.</td><td class="n">27</td></tr>
+                <tr><td><b>Seven Souls</b></td><td class="n">c. 700 BCE</td><td>Assyrian apotropaic plaque</td><td class="n">19</td></tr>
+                <tr><td><b>The Call of Doom</b></td><td class="n">c. 300 BCE</td><td>Ptolemaic magical papyrus</td><td class="n">12</td></tr>
+                <tr><td><b>The All&#8209;Mind</b></td><td class="n">c. 900 CE</td><td>Lowland codex fragment</td><td class="n">9</td></tr>
+                <tr><td><b>The Intolerant</b></td><td class="n">c. 1180 CE</td><td>Icelandic marginalia</td><td class="n">14</td></tr>
+                <tr><td><b>The Infallible</b></td><td class="n">1541 CE</td><td>Belmonte chronicle</td><td class="n">6</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>2.1 Secondary and local epithets</h3>
+          <ul class="dash">
+            <li><b>The Unripe Sovereign</b> &mdash; Nippur series; consistently paired with a verb of <i>waiting</i> rather than <i>sleeping</i>.</li>
+            <li><b>He Who Is Shaped Wrongly</b> &mdash; three Anatolian boundary stones, all recut, all recut badly.</li>
+            <li><b>The Sweet Rot</b> &mdash; Sicilian agrarian charm, 4th c. CE; the only attestation with an agricultural context.</li>
+            <li><b>The Grinning Fruit</b> &mdash; Pompeian graffito, House of the Bronze Lamp (Ref.&nbsp;9). Widely regarded as a joke. The Branch does not share this view.</li>
+            <li><b>Lord of Small Hours</b> &mdash; Altai petroglyph cluster, undated; associated with a nocturnal observance.</li>
+            <li><b>The Quiet Harvest</b> &mdash; Nunavut soapstone carving, 2003 recovery; the northernmost attestation in the corpus by 1,900&nbsp;km.</li>
+            <li><span class="redact" data-deny="Clearance Orchard-3 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> &mdash; withheld pursuant to Orchard Seal &sect;12(b).</li>
+          </ul>
+
+          <div class="marginal">
+            &ldquo;Note that not one of these is a name. They are all descriptions, and they are all descriptions of the same disposition. You do not accumulate eight independent epithets for a thing that was never there.&rdquo;
+            <small>Marginal annotation, Rev. E working copy, initialled H.V.</small>
+          </div>
+        </section>
+
+        <section id="s3">
+          <h2><em>3.0</em> Comparative Nomenclature</h2>
+          <p>The following reconstructions are the work of the Branch philology cell and are offered at moderate confidence. Where a form is bracketed, the underlying sign is damaged, ambiguous, or deliberately effaced by the original scribe &mdash; the last of which occurs in the corpus at a rate the cell describes as &ldquo;statistically impolite.&rdquo;</p>
+
+          <div class="tablewrap">
+            <table>
+              <caption>Table 3.1 &mdash; Attested and reconstructed forms</caption>
+              <thead>
+                <tr><th>Tradition</th><th>Form</th><th>Gloss</th><th>Source</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Sumerian</td><td><b>PIR.TU</b></td><td>&ldquo;the shape that grins&rdquo;</td><td class="n">Ref. 4</td></tr>
+                <tr><td>Akkadian</td><td><b>pir&#8209;tu&#8209;um</b></td><td>&ldquo;the one not yet ripe&rdquo;</td><td class="n">Ref. 4</td></tr>
+                <tr><td>Egyptian (Late)</td><td><b>p&#8209;r&#8209;t&#8209;w</b></td><td>&ldquo;that which comes at the turning&rdquo;</td><td class="n">Ref. 11</td></tr>
+                <tr><td>Hellenistic Greek</td><td><b>&Alpha;&pi;&iota;&omicron;&mu;&omicron;&rho;&phi;&omicron;&sigmaf;</b> (Apiomorphos)</td><td>&ldquo;pear&#8209;formed&rdquo;</td><td class="n">Ref. 6</td></tr>
+                <tr><td>Old Norse</td><td><b>P&aelig;ru&thorn;urs</b></td><td>&ldquo;the pear&#8209;giant&rdquo;</td><td class="n">Ref. 14</td></tr>
+                <tr><td>Middle Chinese</td><td><b>&#26792;&#38957;</b> (l&iacute;&nbsp;t&oacute;u)</td><td>&ldquo;pear&#8209;head&rdquo;</td><td class="n">Ref. 17</td></tr>
+                <tr><td>Nahuatl (colonial)</td><td><b>Peartotl</b> [rec.]</td><td>&ldquo;the round lord&rdquo;</td><td class="n">Ref. 8</td></tr>
+                <tr><td>Unassigned</td><td><b>[ &hellip; ]&#8209;tu&#8209;[ &hellip; ]</b></td><td>&mdash;</td><td class="n">Ref. 19</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>The cell draws particular attention to the Nahuatl and Middle Chinese entries. Both are late, both are almost certainly independent, and both preserve the same two&#8209;element structure &mdash; a fruit term and a term of rank &mdash; without any plausible transmission vector between them. The cell&rsquo;s report (Ref.&nbsp;17, p.&nbsp;212) concludes: <i>&ldquo;Either the name travelled, or the thing did.&rdquo;</i></p>
+        </section>
+
+        <section id="s4">
+          <h2><em>4.0</em> Morphology of the Depicted Form</h2>
+          <p>Depictions across the corpus are unusually stable. Where a tradition renders the entity at all, it renders it the same way, and the deviations are minor enough to be attributed to medium and skill rather than to conception.</p>
+
+          <ol class="legal">
+            <li><b>The body.</b> A closed ovoid, narrower at the crown and broadened toward the base, with one flank consistently drawn further out than the other. Dr.&nbsp;Arphan&rsquo;s 1993 description &mdash; &ldquo;a kind of circle with a stretched edge&rdquo; &mdash; remains the most economical characterisation in the file and is the Branch&rsquo;s preferred wording.</li>
+            <li><b>The face.</b> Set within the body rather than upon it, at or slightly below the median line. Two eyes, frontal, always open. In 91% of catalogued examples the mouth is rendered as a smile. In the remaining 9% the mouth is absent, and in every one of those cases the surrounding text is longer.</li>
+            <li><b>The stem.</b> Present in 63% of examples, invariably bent, and invariably bent toward the viewer&rsquo;s left. The Branch has no explanation for this and has stopped offering one.</li>
+            <li><b>Scale.</b> Where the figure appears alongside human figures, it is drawn larger, and the disparity increases with the age of the object. In the Uruk&#8209;horizon seal (Ref.&nbsp;1) the ratio is approximately 1.4:1; in the Belmonte woodcut of 1541 it fills the frame and the human figures are at the margins, or absent.</li>
+            <li><b>Orientation.</b> Never in profile. The corpus contains no profile depiction. Attempts to establish one have located four candidates, all of which resolved on cleaning into frontal depictions that had been partially overpainted.</li>
+          </ol>
+
+          <div class="marginal">
+            &ldquo;Ask why every culture that drew it drew it facing you.&rdquo;
+            <small>Undated note affixed to the Rev. F cover sheet; author unidentified.</small>
+          </div>
+        </section>
+
+        <section id="s5">
+          <h2><em>5.0</em> The Seven Souls Doctrine</h2>
+          <p>The collective epithet <b>Seven Souls</b> was long treated as an ordinary numerical intensifier. The Branch now assesses that it is a structural statement. In the Assyrian plaque series (Ref.&nbsp;5), the seven remaining principal epithets are listed in a fixed order, introduced by a determinative the philology cell renders as <i>&ldquo;faces of the one&rdquo;</i> rather than <i>&ldquo;names of the one.&rdquo;</i> Six later traditions preserve the same seven in the same order. None preserves an eighth.</p>
+
+          <div class="souls">
+            <div class="soul"><k>Soul I</k><h5>The Sovereign</h5><p>Authority asserted without grant and without ceremony. Texts describe obedience as preceding the demand for it.</p></div>
+            <div class="soul"><k>Soul II</k><h5>The Horrible</h5><p>The aspect of aversion. Consistently the most frequently invoked and the least described &mdash; scribes name it and move on.</p></div>
+            <div class="soul"><k>Soul III</k><h5>Ancestor of Chaos</h5><p>Priority in time. Not a creator: a precondition. Several texts place it before the ordering of the world rather than at it.</p></div>
+            <div class="soul"><k>Soul IV</k><h5>The Call of Doom</h5><p>The aspect of announcement. Associated with sound, with summons, and in three traditions with a specific hour of the night.</p></div>
+            <div class="soul"><k>Soul V</k><h5>The All&#8209;Mind</h5><p>Distributed cognition. The codex fragment (Ref.&nbsp;8) states that it &ldquo;thinks in the places where it is not.&rdquo;</p></div>
+            <div class="soul"><k>Soul VI</k><h5>The Intolerant</h5><p>Refusal of coexistence. The Icelandic gloss is unusually blunt: <i>&ldquo;it does not share the world.&rdquo;</i></p></div>
+            <div class="soul"><k>Soul VII</k><h5>The Infallible</h5><p>Freedom from error, and therefore from appeal. Belmonte notes that no attested text records the entity being deceived, mistaken, or persuaded.</p></div>
+          </div>
+
+          <p>The doctrinal reading, first advanced by Vosk in 1971 and never satisfactorily refuted, holds that the seven are not attributes of a being but a being assembled from seven. This would account for the corpus&rsquo;s persistent failure to supply a proper name: on this reading there is no name to supply, only an inventory. It would also account for the entity&rsquo;s reported distribution &mdash; a thing that is seven things need not be in one place.</p>
+
+          <p>The Branch notes, without further comment, that the corpus contains four instances in which a scribe begins the list and stops at six.</p>
+        </section>
+
+        <section id="s6">
+          <h2><em>6.0</em> Attestation Record</h2>
+          <p>The following is the abbreviated master chronology. Entries marked &sect; carry a separate annex not distributed with this copy.</p>
+
+          <div class="tablewrap">
+            <table>
+              <caption>Table 6.1 &mdash; Master chronology of attestations (abbreviated)</caption>
+              <thead>
+                <tr><th>Date</th><th>Provenance</th><th>Object / Record</th><th>Accession</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="n">c. 3200 BCE</td><td>Lower Mesopotamia</td><td>Cylinder seal fragment; grinning ovoid with two attendants</td><td class="n">UR&#8209;IV/2211</td></tr>
+                <tr><td class="n">c. 2400 BCE</td><td>Nippur</td><td>Incantation tablet, <i>pir&#8209;tu&#8209;um</i> series, ll. 14&ndash;29</td><td class="n">NIP&#8209;A/0884</td></tr>
+                <tr><td class="n">c. 1600 BCE</td><td>Crete, east</td><td>Painted larnax panel, register 3</td><td class="n">AEG&#8209;L/117</td></tr>
+                <tr><td class="n">c. 1200 BCE</td><td>Gulf coast, Mesoamerica</td><td>Basalt fragment, carved ovoid face</td><td class="n">GC&#8209;B/44</td></tr>
+                <tr><td class="n">c. 700 BCE</td><td>Nimrud</td><td>Apotropaic plaque; Seven Souls list in fixed order &sect;</td><td class="n">NMR&#8209;P/019</td></tr>
+                <tr><td class="n">c. 300 BCE</td><td>Fayum</td><td>Magical papyrus, binding formula against &ldquo;the call&rdquo;</td><td class="n">FYM&#8209;P/6021</td></tr>
+                <tr><td class="n">79 CE</td><td>Pompeii</td><td>Wall graffito, House of the Bronze Lamp</td><td class="n">POM&#8209;G/3318</td></tr>
+                <tr><td class="n">c. 340 CE</td><td>Sicily, interior</td><td>Lead agrarian charm, &ldquo;the sweet rot&rdquo;</td><td class="n">SIC&#8209;C/072</td></tr>
+                <tr><td class="n">c. 900 CE</td><td>Lowland Mesoamerica</td><td>Codex fragment, 3 leaves, heavily abraded &sect;</td><td class="n">LM&#8209;CX/7</td></tr>
+                <tr><td class="n">c. 1180 CE</td><td>Iceland, north</td><td>Marginalia in a legal compendium; drawn, not written</td><td class="n">ISL&#8209;M/204</td></tr>
+                <tr><td class="n">1541 CE</td><td>New Spain</td><td>Belmonte chronicle, ff. 61r&ndash;64v, with woodcut</td><td class="n">BEL&#8209;CH/1</td></tr>
+                <tr><td class="n">1798 CE</td><td>Middle Egypt</td><td>Survey notebook, sketch and two lines of description</td><td class="n">EGS&#8209;N/88</td></tr>
+                <tr><td class="n">1888 CE</td><td>Private, London</td><td>Sale catalogue, lot 341, &ldquo;a curious fruit idol&rdquo;; lot withdrawn</td><td class="n">PRV&#8209;C/341</td></tr>
+                <tr><td class="n">1943 CE</td><td><span class="redact" data-deny="Clearance Orchard-3 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>Aerial photographic anomaly, sortie <span class="redact" data-deny="Clearance Orchard-3 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> &sect;</td><td class="n">&mdash;</td></tr>
+                <tr><td class="n">1963 CE</td><td>North Atlantic</td><td>Intercepted transmission, 41 s, unattributed (&ldquo;Rosewood&rdquo;) &sect;</td><td class="n">RSW&#8209;T/01</td></tr>
+                <tr><td class="n">1981 CE</td><td>Mexico</td><td>Erik expedition; textual corpus, Ancestor of Chaos</td><td class="n">MEX&#8209;E/1981</td></tr>
+                <tr><td class="n">1993 CE</td><td>Iraq</td><td>Arphan excavation; temple engravings, 6 panels</td><td class="n">IRQ&#8209;A/1993</td></tr>
+                <tr><td class="n">2003 CE</td><td>Nunavut</td><td>Soapstone carving, surface find, &ldquo;the quiet harvest&rdquo;</td><td class="n">NUN&#8209;S/12</td></tr>
+                <tr><td class="n">2011 CE</td><td>Antarctic interior</td><td>Ice&#8209;core inclusion, 2,410&nbsp;m; morphology consistent &sect;</td><td class="n">ANT&#8209;IC/2410</td></tr>
+                <tr><td class="n">2019 CE</td><td><span class="redact" data-deny="Clearance Orchard-4 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td><span class="redact" data-deny="Clearance Orchard-4 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td class="n">&mdash;</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>Two features of the chronology are worth flagging for the reader who does not intend to read the annexes. First, the record is continuous: there is no century after 3200 BCE from which the Branch holds no material, though several centuries are represented by a single item. Second, the density of attestation declines sharply after 1600 CE and does not recover. The Branch has considered, and rejected, the explanation that the entity became less interesting.</p>
+        </section>
+
+        <section id="s7">
+          <h2><em>7.0</em> Field Testimony</h2>
+          <p>The following are extracts from statements given to Branch debriefers by excavation directors and expedition leads, reproduced with minimal editing. Where a speaker was working in a second language, obvious slips have been silently corrected; nothing has been added.</p>
+
+          <blockquote class="test">
+            <p>&ldquo;Our scientific group found an old temple with engravings of an unknown creature. The form is a kind of circle with a stretched edge. It reminds you of a pear. But with a human face inside.&rdquo;</p>
+            <cite><b>Dr. Mike Arphan</b> &mdash; during the excavation of ruins in Iraq, 1993
+              <span class="src">Debrief IRQ&#8209;A/1993&#8209;03, tape 2, 00:14:51. Six panels recovered; four remain in situ.</span>
+            </cite>
+          </blockquote>
+
+          <blockquote class="test">
+            <p>&ldquo;We found texts that describe an ancient god, or some other powerful creature, of an extreme level of danger. The people called it something like Ancestor of Chaos. The text says it is a hidden threat to the entire world&rsquo;s existence.&rdquo;</p>
+            <cite><b>Dr. Joseph Erik</b> &mdash; during the expedition to Mexico, 1981
+              <span class="src">Debrief MEX&#8209;E/1981&#8209;07, transcript p. 9. Dr. Erik declined a second interview.</span>
+            </cite>
+          </blockquote>
+
+          <blockquote class="test">
+            <p>&ldquo;I have catalogued boundary markers for thirty years. They are dull work and I like them. These three were recut &mdash; badly, hurriedly, by someone who was not a mason. Whoever did it left the body and went at the face. You can still see it. That is the part I would like recorded: they could not remove the face, and they tried.&rdquo;</p>
+            <cite><b>Dr. Helena Vosk</b> &mdash; Anatolian boundary survey, 1968
+              <span class="src">Debrief ANA&#8209;V/1968&#8209;01. Dr. Vosk later authored the Seven Souls reading (Ref. 12).</span>
+            </cite>
+          </blockquote>
+
+          <blockquote class="test">
+            <p>&ldquo;My grandfather&rsquo;s generation had a name for the shape and would not say it after dark. I assumed superstition. Then I read the Nimrud plaque translation and found the same seven words in the same order, three thousand years and four thousand kilometres from my grandfather. I am no longer comfortable calling it superstition. I am not sure what to call it.&rdquo;</p>
+            <cite><b>Dr. Samuel Odiete</b> &mdash; Jos Plateau survey, 1986
+              <span class="src">Debrief JPS&#8209;O/1986&#8209;02, p. 4.</span>
+            </cite>
+          </blockquote>
+
+          <blockquote class="test">
+            <p>&ldquo;The carving was on the surface. Not buried &mdash; on the surface, on a flat stone, in a place where nobody has lived for two hundred years. The lichen growth on the stone was consistent with two centuries. The lichen growth in the cut lines was consistent with eleven months.&rdquo;</p>
+            <cite><b>Dr. Nadia Kerr</b> &mdash; Nunavut survey, 2003
+              <span class="src">Debrief NUN&#8209;S/2003&#8209;01, p. 2. Object NUN&#8209;S/12 held at <span class="redact" data-deny="Clearance Orchard-3 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.</span>
+            </cite>
+          </blockquote>
+
+          <blockquote class="test">
+            <p>&ldquo;Everyone asks whether the peasants of the interior worshipped it. They did not. There is no altar, no offering assemblage, no festival calendar, nothing. What they had was a charm to keep it out of the orchard. You do not write a charm against a thing you invented to explain the weather. You write it against a neighbour.&rdquo;</p>
+            <cite><b>Prof. Aurelio Bastiani</b> &mdash; Sicilian interior excavations, 1957
+              <span class="src">Debrief SIC&#8209;B/1957&#8209;04, p. 17. Earliest testimony in the Branch holdings.</span>
+            </cite>
+          </blockquote>
+
+          <blockquote class="test">
+            <p>&ldquo;They wrote it into the margin of a law book. Not a saga, not a homily &mdash; a law book, next to a clause about grazing rights. Whoever drew it was not telling a story. They were making a note.&rdquo;</p>
+            <cite><b>Dr. Irina Malenko</b> &mdash; manuscript survey, Reykjav&iacute;k, 1974
+              <span class="src">Debrief ISL&#8209;M/1974&#8209;06, p. 11.</span>
+            </cite>
+          </blockquote>
+
+          <blockquote class="test">
+            <p>&ldquo;&hellip; and the people of that place would not name it, but drew it in the dust, and the drawing was of a fruit that had a face, and they broke the drawing with the foot before departing, saying that a picture of it left whole is an invitation. I record this as I heard it, and I confess I broke the drawing also.&rdquo;</p>
+            <cite><b>Fr. Tom&aacute;s de Belmonte</b> &mdash; chronicle, New Spain, 1541, f. 62v
+              <span class="src">Translated from the Castilian by the Branch philology cell, 1991. See Ref. 8.</span>
+            </cite>
+          </blockquote>
+        </section>
+
+        <section id="s8">
+          <h2><em>8.0</em> Incident Log (Abridged)</h2>
+          <p>Incidents are logged where an event involving corpus material departed from ordinary archaeological or custodial expectation. Entries are abridged for this distribution; full logs are held at the originating office.</p>
+
+          <div class="tablewrap">
+            <table>
+              <caption>Table 8.1 &mdash; Logged incidents, 1957&ndash;2024</caption>
+              <thead>
+                <tr><th>Ref.</th><th>Date</th><th>Summary</th><th>Disposition</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="n">ORCHARD&#8209;1</td><td class="n">1963</td><td>41&#8209;second unattributed transmission (&ldquo;Rosewood&rdquo;) received on a disused maritime channel; content is a seven&#8209;item list in an unidentified language. Item order matches Ref.&nbsp;5.</td><td>Open</td></tr>
+                <tr><td class="n">ORCHARD&#8209;2</td><td class="n">1971</td><td>Storage relocation; crate ISL&#8209;M/204 logged out by a signature that does not correspond to any member of staff then or since.</td><td>Closed &mdash; admin.</td></tr>
+                <tr><td class="n">ORCHARD&#8209;3</td><td class="n">1988</td><td>Photographic survey of AEG&#8209;L/117 returned 36 frames; 34 show the panel as catalogued. Two do not. Negatives retained.</td><td>Open</td></tr>
+                <tr><td class="n">ORCHARD&#8209;4</td><td class="n">1994</td><td><span class="redact" data-deny="Clearance Orchard-4 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Four personnel reassigned.</td><td>Sealed</td></tr>
+                <tr><td class="n">ORCHARD&#8209;5</td><td class="n">2007</td><td>Belek sinkhole; a void opened beneath a surveyed field 90&nbsp;m from a catalogued boundary stone. Void walls bear tool marks. Void is not archaeologically datable.</td><td>Open</td></tr>
+                <tr><td class="n">ORCHARD&#8209;6</td><td class="n">2011</td><td>Ice&#8209;core inclusion ANT&#8209;IC/2410 recovered at a depth corresponding to c.&nbsp;9,000&nbsp;BP. Inclusion is not organic. Morphology consistent with &sect;4.0.</td><td>Open</td></tr>
+                <tr><td class="n">ORCHARD&#8209;7</td><td class="n">2019</td><td><span class="redact" data-deny="Clearance Orchard-4 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>Sealed</td></tr>
+                <tr><td class="n">ORCHARD&#8209;8</td><td class="n">2024</td><td>Routine inventory; item count for the Nimrud plaque series returned eight. The series contains seven.</td><td>Open</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="caution">
+            <h4>Note on ORCHARD&#8209;8</h4>
+            <p>The inventory was repeated four times by three teams over eleven days. Counts returned: eight, seven, eight, eight. The Branch is satisfied that the seven plaques on the shelf are the seven plaques of the series and considers the matter procedural. The counting sheets have been retained.</p>
+          </div>
+        </section>
+
+        <section id="s9">
+          <h2><em>9.0</em> Handling &amp; Custodial Protocol</h2>
+          <ol class="legal">
+            <li><b>9.1 &mdash; Storage.</b> Corpus objects are held individually. No two objects bearing the figure are to be stored in the same room, on the same shelf run, or in the same crate. This provision is precautionary and has been in force since 1971 (see ORCHARD&#8209;2); it has never been tested, and the Branch does not propose to test it.</li>
+            <li><b>9.2 &mdash; Photography.</b> Machine reproduction is permitted without restriction. All frames are to be retained, including frames judged spoiled. Frames are not to be discarded at the point of capture by the photographer.</li>
+            <li><b>9.3 &mdash; Transcription.</b> Textual material may be transcribed. Vocative and imperative constructions are to be transcribed in transliteration only, never in a modern language, and never in the second person.</li>
+            <li><b>9.4 &mdash; Manual reproduction.</b> Personnel are prohibited from drawing the figure by hand. This applies to notebooks, whiteboards, condensation, sand, and dust. Where a hand&#8209;drawn figure is produced inadvertently, it is to be defaced &mdash; not erased &mdash; before the person leaves the room.</li>
+            <li><b>9.5 &mdash; Nomenclature.</b> In speech, personnel are to use the file designation. Epithets from &sect;2.0 and &sect;5.0 are not to be used conversationally, in sequence, or aloud.</li>
+            <li><b>9.6 &mdash; Reporting.</b> Any discrepancy in inventory count is to be reported the same day, regardless of how trivial, and regardless of whether the discrepancy resolves on a recount.</li>
+          </ol>
+
+          <div class="marginal">
+            &ldquo;9.4 gets laughed at by every new intake. It has been in the protocol since 1971 and nobody who was there has ever asked for it to be removed. Draw your own conclusion; do not draw anything else.&rdquo;
+            <small>CIB induction briefing notes, undated.</small>
+          </div>
+        </section>
+
+        <section id="s10">
+          <h2><em>10.0</em> Threat Assessment</h2>
+          <p>The Branch assesses PEARTO at <b>OMEGA&#8209;PRIME</b> &mdash; the classification reserved for entities whose potential effect is world&#8209;scale and whose current activity cannot be demonstrated. The rating is a statement about the ceiling of the risk, not about its likelihood, and personnel outside the Branch persistently misread it as the latter.</p>
+
+          <div class="tablewrap">
+            <table>
+              <caption>Table 10.1 &mdash; Assessment matrix</caption>
+              <thead>
+                <tr><th>Vector</th><th>Assessment</th><th>Confidence</th><th>Basis</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Existential ceiling</td><td><b>Severe</b></td><td>Moderate</td><td>Uniform textual claim of world&#8209;scale threat across 19 horizons</td></tr>
+                <tr><td>Current activity</td><td><b>Not demonstrated</b></td><td>Low</td><td>Post&#8209;1600 attestation decline; no verified contemporary event</td></tr>
+                <tr><td>Intelligence</td><td><b>Assessed present</b></td><td>Moderate</td><td>Consistent ascription of intent, preference and refusal</td></tr>
+                <tr><td>Distribution</td><td><b>Non&#8209;local</b></td><td>Moderate</td><td>Seven Souls structure; simultaneity in Ref. 8 and Ref. 14</td></tr>
+                <tr><td>Communicability</td><td><b>Possible</b></td><td>Low</td><td>Marchetti hypothesis; unresolved, see &sect;11.0</td></tr>
+                <tr><td>Containability</td><td><b>Not applicable</b></td><td>&mdash;</td><td>No object of containment has been identified</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>The final row is the operative one. This Directorate cannot contain PEARTO because it has never possessed PEARTO. It possesses nineteen horizons of people insisting, in languages that never met, that something was there and that it was not on their side.</p>
+        </section>
+
+        <section id="s11">
+          <h2><em>11.0</em> Outstanding Intelligence Gaps</h2>
+          <ul class="dash">
+            <li><b>The transmission problem.</b> No vector accounts for the distribution. Diffusion fails on chronology; convergence fails on the specificity of the seven&#8209;item list. The Branch has no third explanation it is willing to put in writing at this classification.</li>
+            <li><b>The Marchetti hypothesis.</b> That the corpus is not a record of an entity but the entity&rsquo;s medium &mdash; that the figure propagates by being copied. Unfalsified. Also unsupported. &sect;9.4 exists because of it.</li>
+            <li><b>The 1600 decline.</b> Attestation density falls by roughly 80% after 1600 CE and does not recover. Candidate explanations: literacy shift, iconoclasm, collection bias, cessation, or concealment. The Branch has no preference between the last two.</li>
+            <li><b>The sixth&#8209;stop.</b> Four scribes across three traditions begin the Seven Souls list and stop at six. Their manuscripts are otherwise complete. In two cases the scribe continues, on the next line, with unrelated material and does not return.</li>
+            <li><b>ANT&#8209;IC/2410.</b> If the inclusion is what the morphology suggests, the corpus does not begin at 3200 BCE and the entire chronology in &sect;6.0 is a footnote.</li>
+            <li><span class="redact" data-deny="Clearance Orchard-4 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+          </ul>
+        </section>
+
+        <section id="a1">
+          <h2><em>App. A</em> Glyph Inventory</h2>
+          <p>Line reconstructions prepared by the Branch drafting office from photographic survey. Plates are reproduced by machine; see &sect;9.4.</p>
+
+          <div class="plates">
+            <figure class="plate">
+              <svg viewBox="0 0 120 140" role="img" aria-label="Plate I: incised ovoid with two eyes and a straight mouth">
+                <path d="M60 20c-5 0-8 3.6-8 7.4 0 3-1 4.6-3 6.6C42 41 30 52 30 74c0 26 13.4 44 30 44s30-18 30-44c0-22-12-33-19-40-2-2-3-3.6-3-6.6 0-3.8-3-7.4-8-7.4z" fill="none" stroke="currentColor" stroke-width="2"/>
+                <circle cx="50" cy="70" r="3" fill="currentColor"/>
+                <circle cx="70" cy="70" r="3" fill="currentColor"/>
+                <path d="M48 88h24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M60 20V8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <figcaption><b>Plate I</b>UR&#8209;IV/2211 &middot; c. 3200 BCE<br>Mouth straight. Earliest catalogued form. Stem vertical &mdash; the only such instance in the corpus.</figcaption>
+            </figure>
+
+            <figure class="plate">
+              <svg viewBox="0 0 120 140" role="img" aria-label="Plate II: ovoid with asymmetric flank, smiling mouth and bent stem">
+                <path d="M60 22c-5 0-8 3.6-8 7.4 0 3-1.4 4.6-3.4 6.6C41 43 28 54 28 76c0 26 14 42 32 42s32-16 32-40c0-24-13-34-20-41-2-2-4-3.8-4-6.8 0-3.8-3-8.2-8-8.2z" fill="none" stroke="currentColor" stroke-width="2"/>
+                <circle cx="49" cy="72" r="3.2" fill="currentColor"/>
+                <circle cx="71" cy="72" r="3.2" fill="currentColor"/>
+                <path d="M46 88c5.5 7 22.5 7 28 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M60 22c-2-6-8-9-14-9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <figcaption><b>Plate II</b>IRQ&#8209;A/1993 &middot; panel 2<br>Canonical form. Stem bent to viewer left; flank extended right. The type specimen for &sect;4.0.</figcaption>
+            </figure>
+
+            <figure class="plate">
+              <svg viewBox="0 0 120 140" role="img" aria-label="Plate III: ovoid with eyes and no mouth, surrounded by seven marks">
+                <path d="M60 24c-5 0-8.4 3.6-8.4 7.4 0 3-1.4 4.8-3.6 7C40.6 46 29 56 29 77c0 25 14 41 31 41s31-16 31-41c0-21-11.6-31-19-38.6-2.2-2.2-3.6-4-3.6-7 0-3.8-3.4-7.4-8.4-7.4z" fill="none" stroke="currentColor" stroke-width="2"/>
+                <circle cx="49.5" cy="73" r="3.2" fill="currentColor"/>
+                <circle cx="70.5" cy="73" r="3.2" fill="currentColor"/>
+                <g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity=".9">
+                  <path d="M60 6v7M86 14l-3.4 6.2M104 38l-6 3.6M104 96l-6-3.4M60 132v-7M16 38l6 3.6M16 96l6-3.4"/>
+                </g>
+              </svg>
+              <figcaption><b>Plate III</b>NMR&#8209;P/019 &middot; c. 700 BCE<br>Mouthless variant, seven external marks. Manual reproduction of this plate is prohibited under &sect;9.4.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section id="a2">
+          <h2><em>App. B</em> Transcript Extract</h2>
+          <p>Extract from debrief IRQ&#8209;A/1993&#8209;03, tape 3. Speaker A is the Branch debriefer; speaker B is Dr.&nbsp;Arphan. Reproduced verbatim; ellipses are in the original transcript.</p>
+
+          <div class="tablewrap">
+            <table>
+              <caption>Transcript IRQ&#8209;A/1993&#8209;03 &middot; tape 3 &middot; 00:41:02 &ndash; 00:44:16</caption>
+              <thead><tr><th>Time</th><th>Spk</th><th>Content</th></tr></thead>
+              <tbody>
+                <tr><td class="n">00:41:02</td><td class="n">A</td><td>You said the panels were in sequence. Sequence of what?</td></tr>
+                <tr><td class="n">00:41:09</td><td class="n">B</td><td>Of size. Panel one is small, about a hand. Panel six is the whole wall.</td></tr>
+                <tr><td class="n">00:41:20</td><td class="n">A</td><td>And the figure is the same in all six.</td></tr>
+                <tr><td class="n">00:41:24</td><td class="n">B</td><td>The same. Only bigger. And the people &mdash; there are people in panel one, at the edges, small. By panel four there are fewer. In six there are none.</td></tr>
+                <tr><td class="n">00:41:47</td><td class="n">A</td><td>Fewer, or smaller?</td></tr>
+                <tr><td class="n">00:41:51</td><td class="n">B</td><td>&hellip; Fewer.</td></tr>
+                <tr><td class="n">00:42:09</td><td class="n">A</td><td>Was there an inscription?</td></tr>
+                <tr><td class="n">00:42:12</td><td class="n">B</td><td>Under each one. Same three signs each time. The epigrapher said it is a counting formula. Like a tally.</td></tr>
+                <tr><td class="n">00:42:31</td><td class="n">A</td><td>Counting up or counting down?</td></tr>
+                <tr><td class="n">00:42:36</td><td class="n">B</td><td>He would not say. He asked to be taken back to the camp.</td></tr>
+                <tr><td class="n">00:43:04</td><td class="n">A</td><td><span class="redact" data-deny="Clearance Orchard-3 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>
+                <tr><td class="n">00:43:22</td><td class="n">B</td><td>No. I did not photograph the seventh panel.</td></tr>
+                <tr><td class="n">00:43:29</td><td class="n">A</td><td>You reported six panels.</td></tr>
+                <tr><td class="n">00:43:33</td><td class="n">B</td><td>Yes.</td></tr>
+                <tr><td class="n">00:43:38</td><td class="n">A</td><td>Dr. Arphan, you reported six panels.</td></tr>
+                <tr><td class="n">00:43:44</td><td class="n">B</td><td>Yes. I know what I reported.</td></tr>
+                <tr><td class="n">00:44:16</td><td class="n">&mdash;</td><td>[Interview suspended at the request of the interviewee. Not resumed.]</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <span class="blackbar w88"></span>
+          <span class="blackbar w45"></span>
+          <span class="blackbar w70"></span>
+        </section>
+
+        <section id="refs">
+          <h2><em>App. C</em> References &amp; Source Register</h2>
+          <p>Sources are listed in the order of their first citation in the body text. Items marked &dagger; are held only at the originating office and are not available through ordinary channels.</p>
+
+          <ol class="refs">
+            <li>Halloran, P. &amp; Wexley, D. &mdash; <i>The Uruk IV Glyptic Corpus: A Re-examination of Anomalous Motifs</i>. Bulletin of the Institute of Comparative Antiquity, vol. 22, no. 3 (1979), pp. 411&ndash;448.</li>
+            <li>Arphan, M. &mdash; <i>Preliminary Report on the Southern Temple Complex, Season 1993</i>. Field Report IRQ&#8209;A/1993, Institute of Comparative Antiquity (1994). 118 pp., 41 plates.</li>
+            <li>Erik, J. &mdash; <i>Textual Recoveries from the 1981 Expedition: Transcription and Commentary</i>. Journal of Peripheral Archaeology, vol. 14 (1983), pp. 77&ndash;131.</li>
+            <li>Whitlock, A. R. &mdash; <i>The Nippur pir-tu-um Series: Edition, Translation, Glossary</i>. Ostrander Press, Ghent (1988). xxxi + 402 pp.</li>
+            <li>Dujardin, C. &mdash; <i>Seven in a Fixed Order: The Nimrud Apotropaic Plaques Reconsidered</i>. Annals of Near Eastern Epigraphy, vol. 9, no. 1 (1996), pp. 3&ndash;58. &dagger;</li>
+            <li>Papadakis, E. &mdash; <i>Apiomorphos: A Hellenistic Epithet Without a Cult</i>. Hesperian Studies Quarterly, vol. 31 (1992), pp. 205&ndash;219.</li>
+            <li>Bastiani, A. &mdash; <i>Charms of the Sicilian Interior: Agrarian Apotropaia, 200&ndash;500 CE</i>. Palermo Antiquarian Society Monographs, no. 7 (1961).</li>
+            <li>de Belmonte, T. (1541), trans. Branch philology cell (1991) &mdash; <i>Cr&oacute;nica de las cosas no vistas</i>, ff. 58r&ndash;71v. DAA internal translation series, no. 33. &dagger;</li>
+            <li>Renshaw, K. &mdash; <i>Graffiti of the House of the Bronze Lamp: A Catalogue</i>. Vesuvian Documentation Project, fasc. 4 (1985), no. 3318.</li>
+            <li>Vosk, H. &mdash; <i>Recut Faces: Deliberate Effacement on Three Anatolian Boundary Markers</i>. Anatolian Survey Papers, vol. 6 (1970), pp. 88&ndash;104.</li>
+            <li>Sallow, G. &mdash; <i>Late Egyptian Marginalia and the p-r-t-w Problem</i>. Nilotic Philology, vol. 18, no. 2 (1994), pp. 143&ndash;177.</li>
+            <li>Vosk, H. &mdash; <i>The Seven Souls Reading: A Structural Interpretation of the Corpus</i>. Bulletin of the Institute of Comparative Antiquity, vol. 14, no. 4 (1971), pp. 502&ndash;561. <b>[Foundational]</b></li>
+            <li>Odiete, S. &mdash; <i>Oral Nomenclature and the Jos Plateau Correspondences</i>. West African Antiquarian Review, vol. 11 (1988), pp. 22&ndash;49.</li>
+            <li>Malenko, I. &mdash; <i>A Drawing in a Law Book: ISL-M/204 and Its Context</i>. Northern Manuscript Studies, vol. 3 (1976), pp. 61&ndash;90.</li>
+            <li>Kerr, N. &mdash; <i>Surface Find NUN-S/12: Lichenometric Anomaly Report</i>. Arctic Survey Technical Note 2003/14. &dagger;</li>
+            <li>Marchetti, L. &mdash; <i>On the Possibility That the Record Is the Referent</i>. Proceedings of the Colloquium on Anomalous Transmission (1999), pp. 9&ndash;37. &dagger;</li>
+            <li>Ruan, W. &amp; Delacroix, F. &mdash; <i>Two Names, No Contact: Li-tou and Peartotl in Comparative Perspective</i>. Journal of Peripheral Archaeology, vol. 39 (2008), pp. 188&ndash;231.</li>
+            <li>Directorate of Anomalous Antiquities &mdash; <i>Custodial Protocol for Iconographic Anomalies (Orchard Series)</i>, 4th ed. DAA/S7 (2016). &dagger;</li>
+            <li>Directorate of Anomalous Antiquities &mdash; <i>Annexes to DAA-1147, Rev. H</i>. Not distributed with this copy. &dagger;</li>
+            <li>Halloran, P. &mdash; <i>Nineteen Horizons: A Statistical Note on Iconographic Coincidence</i>. Bulletin of the Institute of Comparative Antiquity, vol. 45, no. 2 (2014), pp. 301&ndash;329.</li>
+          </ol>
+        </section>
+
+        <section id="sig" style="margin-bottom:0">
+          <h2><em>&mdash;</em> Authentication</h2>
+          <div class="sigs">
+            <div class="sig">
+              <div class="scrawl">H. Vosk</div>
+              <b>Dr. Helena Vosk</b>
+              Chief, Comparative Iconography Branch
+            </div>
+            <div class="sig">
+              <div class="scrawl">P. Halloran</div>
+              <b>Dr. Peter Halloran</b>
+              Senior Reviewer, Section 7
+            </div>
+            <div class="sig">
+              <div class="scrawl">&mdash;&nbsp;&mdash;&nbsp;&mdash;</div>
+              <b><span class="redact" data-deny="Clearance Orchard-4 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></b>
+              Releasing Authority, Orchard Seal
+            </div>
+          </div>
+
+          <div class="stamprow">
+            <span class="stamp">Authenticated Copy</span>
+            <span class="stamp blue sm">Annexes Withheld</span>
+          </div>
+
+          <div class="pagefoot">
+            <span>DAA&#8209;1147&#8209;PEARTO &middot; Rev. H</span>
+            <span>Top Secret // Orchard Seal // NOFORN</span>
+            <span>Page 1 of <span class="redact" data-deny="Clearance Orchard-3 Required">&nbsp;&nbsp;&nbsp;</span></span>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="doc">
+  <div class="fiction">
+    <b>Notice</b>
+    If you have accidentally gained access to this document, please immediately notify our cybersecurity department! Do not copy or distribute it under any circumstances.
+  </div>
+  <p style="margin:0">DAA&#8209;1147&#8209;PEARTO &middot; consolidated dossier &middot; Rev. H &middot; presented for reading rather than for belief.</p>
+</footer>
+
+<div class="banner bot">End of Document <span>//</span> Top Secret <span>//</span> Orchard Seal <span>//</span> Unauthorised Retention Is an Offence</div>
+
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById("themeBtn"),KEY="pearto-theme";
+  function label(){
+    var t=root.getAttribute("data-theme");
+    btn.textContent = t==="dark" ? "Paper" : (t==="light" ? "Microfilm" : "Microfilm");
+  }
+  try{ var saved=localStorage.getItem(KEY); if(saved){ root.setAttribute("data-theme",saved); } }catch(e){}
+  label();
+  btn.addEventListener("click",function(){
+    var cur=root.getAttribute("data-theme");
+    var next;
+    if(cur==="dark"){ next="light"; }
+    else if(cur==="light"){ next="dark"; }
+    else { next = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark"; }
+    root.setAttribute("data-theme",next);
+    try{ localStorage.setItem(KEY,next); }catch(e){}
+    label();
+  });
+})();
+</script>
+</body>
+</html>
