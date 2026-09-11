@@ -1,4 +1,4 @@
 # PEARTO
-A secret document about world thread.
+A secret document about world threat.
 
 **Read it here:** https://nullsoftware.github.io/PEARTO/
