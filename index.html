@@ -89,7 +89,7 @@ body::before{
 .banner.top{top:0}
 .banner.bot{bottom:0}
 .banner span{opacity:.72;font-weight:400}
-@media (max-width:640px){.banner{font-size:9px;letter-spacing:.1em;padding:6px 8px}}
+@media (max-width:640px){.banner{font-size:9.5px;letter-spacing:.09em;padding:6px 8px;line-height:1.5}}
 
 .sheet{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:74px 26px 96px}
 .paperwrap{
@@ -141,7 +141,7 @@ h1.title{
 .control v{display:block;font-weight:500;letter-spacing:.04em}
 
 .cols{display:grid;grid-template-columns:210px minmax(0,1fr);gap:44px;align-items:start;margin-top:44px}
-@media (max-width:900px){.cols{grid-template-columns:1fr;gap:22px}}
+@media (max-width:900px){.cols{grid-template-columns:minmax(0,1fr);gap:22px}}
 nav.index{position:sticky;top:86px;font-family:var(--mono);font-size:11.5px}
 @media (max-width:900px){nav.index{position:static;border:1px solid var(--rule);padding:14px 16px;background:var(--paper-2)}}
 nav.index h4{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-3);margin:0 0 10px;font-family:var(--mono);font-weight:600}
@@ -195,11 +195,14 @@ blockquote.test .src{display:block;margin-top:6px;font-size:10px;color:var(--ink
   padding:0 .28em;cursor:not-allowed;position:relative;
 }
 .redact::after{
-  content:attr(data-deny);position:absolute;left:50%;top:-32px;transform:translateX(-50%);
+  content:attr(data-deny);position:absolute;left:50%;top:-32px;
+  /* scale(0) while hidden: an opacity:0 label still counts toward the page scroll width */
+  transform:translateX(-50%) scale(0);
   background:var(--stamp);color:#fff;font-family:var(--mono);font-size:9px;letter-spacing:.14em;
-  padding:4px 8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;text-transform:uppercase;z-index:5;
+  padding:4px 8px;white-space:nowrap;opacity:0;pointer-events:none;text-transform:uppercase;z-index:5;
+  transition:opacity .15s,transform 0s .15s;
 }
-.redact:hover::after{opacity:1}
+.redact:hover::after{opacity:1;transform:translateX(-50%) scale(1);transition:opacity .15s,transform 0s}
 .blackbar{display:block;height:13px;background:var(--redact);margin:9px 0;border-radius:1px}
 .blackbar.w70{width:70%}.blackbar.w45{width:45%}.blackbar.w88{width:88%}
 
@@ -240,7 +243,7 @@ ol.refs i{color:var(--ink)}
 .sig b{display:block;color:var(--ink);letter-spacing:.1em}
 
 footer.doc{
-  margin:44px auto 0;max-width:1080px;padding:0 26px;
+  margin:44px auto 0;max-width:1080px;padding:0 26px 54px;
   font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--ink-3);line-height:1.85
 }
 footer.doc .warning{border:1px dashed var(--rule);padding:14px 16px;margin:0 0 18px;color:var(--ink-2);letter-spacing:.04em}
@@ -259,7 +262,96 @@ footer.doc .warning b{color:var(--ink);letter-spacing:.14em;text-transform:upper
   padding:6px 10px;cursor:pointer;border-radius:2px;
 }
 .toggle:hover{color:var(--stamp);border-color:var(--stamp)}
-@media (max-width:640px){.toggle{top:36px;right:8px;font-size:8.5px;padding:5px 7px}}
+/* phones: park the toggle at the top of the page rather than floating it over 30 screens of text */
+@media (max-width:640px){.toggle{position:absolute;top:48px;right:11px;font-size:9px;padding:8px 11px;letter-spacing:.14em}}
+
+/* ============ NARROW VIEWPORTS ============
+   Everything below is media-query scoped; the >760px layout is unchanged. */
+
+@media (max-width:760px){
+  html{scroll-padding-top:66px}
+  body{font-size:16.5px;line-height:1.6;overflow-wrap:break-word}
+
+  .sheet{padding:68px 16px 78px}
+  .paperwrap{padding:22px 18px 26px;margin-top:20px}
+
+  .crest{flex-direction:column;align-items:flex-start;gap:16px}
+  .crest-id{gap:14px}
+  .seal{width:60px;height:60px;flex:0 0 60px}
+  .agency b{font-size:13.5px;letter-spacing:.11em}
+  .agency small{font-size:10px;letter-spacing:.14em;line-height:1.5}
+  .filecode{text-align:left;font-size:11.5px;line-height:1.8}
+
+  h1.title{margin:20px 0 6px}
+  .subtitle{font-size:12px;letter-spacing:.15em}
+  .byline{font-size:11.5px;line-height:1.7}
+  .stamprow{gap:12px;margin-top:20px}
+  .stamp{font-size:11px;padding:7px 11px;letter-spacing:.12em}
+  .stamp.sm{font-size:9.5px;padding:5px 8px}
+  .control{margin-top:20px}
+  .control div{padding:10px 12px}
+
+  /* contents list: two columns, and taps big enough to hit */
+  .cols{margin-top:28px}
+  nav.index{display:grid;grid-template-columns:1fr 1fr;gap:0 18px;font-size:12px;padding:13px 15px}
+  nav.index h4{grid-column:1/-1}
+  nav.index a{padding:8px 0}
+
+  section{margin-bottom:42px}
+  h2{font-size:13.5px;letter-spacing:.1em;gap:9px;flex-wrap:wrap}
+  h2 em{font-size:11.5px}
+  h3{font-size:11.5px;letter-spacing:.1em;margin-top:26px}
+  .lede{font-size:17px}
+  .lede::first-letter{font-size:46px;padding:5px 9px 0 0}
+
+  .caution{padding:14px 15px}
+  .caution p{font-size:14.5px}
+  .marginal{font-size:13.5px;padding-left:12px}
+  blockquote.test{padding:15px 15px 13px}
+  blockquote.test p{font-size:16px}
+  .soul{padding:14px 15px}
+  .plate svg{max-width:180px}
+  ol.refs{padding-left:20px;font-size:12.5px}
+  .sigs{gap:22px;margin-top:28px}
+
+  footer.doc{margin-top:34px;padding:0 16px 66px}
+  .pagefoot{font-size:9.5px;letter-spacing:.12em;gap:10px}
+}
+
+@media (max-width:640px){
+  .sheet{padding:86px 11px 74px}
+  .paperwrap{padding:17px 14px 21px;margin-top:16px}
+  .paperwrap::after{inset:4px}
+
+  /* No hover on touch: the denial reads inline, and cannot push the page wide. */
+  .redact{cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .redact::after{
+    position:static;display:none;opacity:1;transform:none;top:auto;left:auto;
+    margin-left:.35em;padding:2px 6px;font-size:8.5px;letter-spacing:.1em;white-space:normal;
+  }
+  .redact:hover::after,.redact.deny-open::after{display:inline-block}
+
+  /* Tables become one record card per row; each cell carries its own header. */
+  .tablewrap{overflow-x:visible;border:0;background:transparent}
+  table{display:block;width:100%;min-width:0;font-size:12.5px}
+  caption{display:block;border:1px solid var(--rule);padding:9px 11px;font-size:9px;letter-spacing:.16em}
+  thead{display:none}
+  tbody{display:block}
+  tbody tr{display:block;padding:4px 0;border:1px solid var(--rule);border-top:0;background:var(--paper-2)}
+  tbody tr:nth-child(even){background:color-mix(in srgb,var(--paper-3) 50%,var(--paper-2))}
+  /* Two grid items per cell: the generated label, and span.v holding the value.
+     The wrapper matters -- a bare grid would blockify each <b>/<i> into its own item. */
+  td,td.n{
+    display:grid;grid-template-columns:clamp(62px,22vw,80px) minmax(0,1fr);
+    gap:2px 10px;align-items:baseline;padding:5px 11px;border:0;white-space:normal;
+  }
+  td>.v{min-width:0;overflow-wrap:break-word}
+  td.n{color:var(--ink-2)}
+  td::before{
+    content:attr(data-label);font-family:var(--mono);font-size:8.5px;font-weight:600;
+    letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);line-height:1.85;
+  }
+}
 
 @media print{
   .banner,.toggle,nav.index{display:none}
@@ -379,14 +471,14 @@ footer.doc .warning b{color:var(--ink);letter-spacing:.14em;text-transform:upper
                 <tr><th>Epithet</th><th>Earliest Attestation</th><th>Horizon</th><th>Count</th></tr>
               </thead>
               <tbody>
-                <tr><td><b>The Sovereign Creature</b></td><td class="n">c. 2400 BCE</td><td>Akkadian incantation</td><td class="n">31</td></tr>
-                <tr><td><b>The Horrible Creature</b></td><td class="n">c. 1600 BCE</td><td>Aegean funerary panel</td><td class="n">44</td></tr>
-                <tr><td><b>Ancestor of Chaos</b></td><td class="n">c. 1200 BCE</td><td>Gulf&#8209;coast basalt frag.</td><td class="n">27</td></tr>
-                <tr><td><b>Seven Souls</b></td><td class="n">c. 700 BCE</td><td>Assyrian apotropaic plaque</td><td class="n">19</td></tr>
-                <tr><td><b>The Call of Doom</b></td><td class="n">c. 300 BCE</td><td>Ptolemaic magical papyrus</td><td class="n">12</td></tr>
-                <tr><td><b>The All&#8209;Mind</b></td><td class="n">c. 900 CE</td><td>Lowland codex fragment</td><td class="n">9</td></tr>
-                <tr><td><b>The Intolerant</b></td><td class="n">c. 1180 CE</td><td>Icelandic marginalia</td><td class="n">14</td></tr>
-                <tr><td><b>The Infallible</b></td><td class="n">1541 CE</td><td>Belmonte chronicle</td><td class="n">6</td></tr>
+                <tr><td data-label="Epithet"><span class="v"><b>The Sovereign Creature</b></span></td><td data-label="Earliest Attestation" class="n"><span class="v">c. 2400 BCE</span></td><td data-label="Horizon"><span class="v">Akkadian incantation</span></td><td data-label="Count" class="n"><span class="v">31</span></td></tr>
+                <tr><td data-label="Epithet"><span class="v"><b>The Horrible Creature</b></span></td><td data-label="Earliest Attestation" class="n"><span class="v">c. 1600 BCE</span></td><td data-label="Horizon"><span class="v">Aegean funerary panel</span></td><td data-label="Count" class="n"><span class="v">44</span></td></tr>
+                <tr><td data-label="Epithet"><span class="v"><b>Ancestor of Chaos</b></span></td><td data-label="Earliest Attestation" class="n"><span class="v">c. 1200 BCE</span></td><td data-label="Horizon"><span class="v">Gulf&#8209;coast basalt frag.</span></td><td data-label="Count" class="n"><span class="v">27</span></td></tr>
+                <tr><td data-label="Epithet"><span class="v"><b>Seven Souls</b></span></td><td data-label="Earliest Attestation" class="n"><span class="v">c. 700 BCE</span></td><td data-label="Horizon"><span class="v">Assyrian apotropaic plaque</span></td><td data-label="Count" class="n"><span class="v">19</span></td></tr>
+                <tr><td data-label="Epithet"><span class="v"><b>The Call of Doom</b></span></td><td data-label="Earliest Attestation" class="n"><span class="v">c. 300 BCE</span></td><td data-label="Horizon"><span class="v">Ptolemaic magical papyrus</span></td><td data-label="Count" class="n"><span class="v">12</span></td></tr>
+                <tr><td data-label="Epithet"><span class="v"><b>The All&#8209;Mind</b></span></td><td data-label="Earliest Attestation" class="n"><span class="v">c. 900 CE</span></td><td data-label="Horizon"><span class="v">Lowland codex fragment</span></td><td data-label="Count" class="n"><span class="v">9</span></td></tr>
+                <tr><td data-label="Epithet"><span class="v"><b>The Intolerant</b></span></td><td data-label="Earliest Attestation" class="n"><span class="v">c. 1180 CE</span></td><td data-label="Horizon"><span class="v">Icelandic marginalia</span></td><td data-label="Count" class="n"><span class="v">14</span></td></tr>
+                <tr><td data-label="Epithet"><span class="v"><b>The Infallible</b></span></td><td data-label="Earliest Attestation" class="n"><span class="v">1541 CE</span></td><td data-label="Horizon"><span class="v">Belmonte chronicle</span></td><td data-label="Count" class="n"><span class="v">6</span></td></tr>
               </tbody>
             </table>
           </div>
@@ -419,14 +511,14 @@ footer.doc .warning b{color:var(--ink);letter-spacing:.14em;text-transform:upper
                 <tr><th>Tradition</th><th>Form</th><th>Gloss</th><th>Source</th></tr>
               </thead>
               <tbody>
-                <tr><td>Sumerian</td><td><b>PIR.TU</b></td><td>&ldquo;the shape that grins&rdquo;</td><td class="n">Ref. 4</td></tr>
-                <tr><td>Akkadian</td><td><b>pir&#8209;tu&#8209;um</b></td><td>&ldquo;the one not yet ripe&rdquo;</td><td class="n">Ref. 4</td></tr>
-                <tr><td>Egyptian (Late)</td><td><b>p&#8209;r&#8209;t&#8209;w</b></td><td>&ldquo;that which comes at the turning&rdquo;</td><td class="n">Ref. 11</td></tr>
-                <tr><td>Hellenistic Greek</td><td><b>&Alpha;&pi;&iota;&omicron;&mu;&omicron;&rho;&phi;&omicron;&sigmaf;</b> (Apiomorphos)</td><td>&ldquo;pear&#8209;formed&rdquo;</td><td class="n">Ref. 6</td></tr>
-                <tr><td>Old Norse</td><td><b>P&aelig;ru&thorn;urs</b></td><td>&ldquo;the pear&#8209;giant&rdquo;</td><td class="n">Ref. 14</td></tr>
-                <tr><td>Middle Chinese</td><td><b>&#26792;&#38957;</b> (l&iacute;&nbsp;t&oacute;u)</td><td>&ldquo;pear&#8209;head&rdquo;</td><td class="n">Ref. 17</td></tr>
-                <tr><td>Nahuatl (colonial)</td><td><b>Peartotl</b> [rec.]</td><td>&ldquo;the round lord&rdquo;</td><td class="n">Ref. 8</td></tr>
-                <tr><td>Unassigned</td><td><b>[ &hellip; ]&#8209;tu&#8209;[ &hellip; ]</b></td><td>&mdash;</td><td class="n">Ref. 19</td></tr>
+                <tr><td data-label="Tradition"><span class="v">Sumerian</span></td><td data-label="Form"><span class="v"><b>PIR.TU</b></span></td><td data-label="Gloss"><span class="v">&ldquo;the shape that grins&rdquo;</span></td><td data-label="Source" class="n"><span class="v">Ref. 4</span></td></tr>
+                <tr><td data-label="Tradition"><span class="v">Akkadian</span></td><td data-label="Form"><span class="v"><b>pir&#8209;tu&#8209;um</b></span></td><td data-label="Gloss"><span class="v">&ldquo;the one not yet ripe&rdquo;</span></td><td data-label="Source" class="n"><span class="v">Ref. 4</span></td></tr>
+                <tr><td data-label="Tradition"><span class="v">Egyptian (Late)</span></td><td data-label="Form"><span class="v"><b>p&#8209;r&#8209;t&#8209;w</b></span></td><td data-label="Gloss"><span class="v">&ldquo;that which comes at the turning&rdquo;</span></td><td data-label="Source" class="n"><span class="v">Ref. 11</span></td></tr>
+                <tr><td data-label="Tradition"><span class="v">Hellenistic Greek</span></td><td data-label="Form"><span class="v"><b>&Alpha;&pi;&iota;&omicron;&mu;&omicron;&rho;&phi;&omicron;&sigmaf;</b> (Apiomorphos)</span></td><td data-label="Gloss"><span class="v">&ldquo;pear&#8209;formed&rdquo;</span></td><td data-label="Source" class="n"><span class="v">Ref. 6</span></td></tr>
+                <tr><td data-label="Tradition"><span class="v">Old Norse</span></td><td data-label="Form"><span class="v"><b>P&aelig;ru&thorn;urs</b></span></td><td data-label="Gloss"><span class="v">&ldquo;the pear&#8209;giant&rdquo;</span></td><td data-label="Source" class="n"><span class="v">Ref. 14</span></td></tr>
+                <tr><td data-label="Tradition"><span class="v">Middle Chinese</span></td><td data-label="Form"><span class="v"><b>&#26792;&#38957;</b> (l&iacute;&nbsp;t&oacute;u)</span></td><td data-label="Gloss"><span class="v">&ldquo;pear&#8209;head&rdquo;</span></td><td data-label="Source" class="n"><span class="v">Ref. 17</span></td></tr>
+                <tr><td data-label="Tradition"><span class="v">Nahuatl (colonial)</span></td><td data-label="Form"><span class="v"><b>Peartotl</b> [rec.]</span></td><td data-label="Gloss"><span class="v">&ldquo;the round lord&rdquo;</span></td><td data-label="Source" class="n"><span class="v">Ref. 8</span></td></tr>
+                <tr><td data-label="Tradition"><span class="v">Unassigned</span></td><td data-label="Form"><span class="v"><b>[ &hellip; ]&#8209;tu&#8209;[ &hellip; ]</b></span></td><td data-label="Gloss"><span class="v">&mdash;</span></td><td data-label="Source" class="n"><span class="v">Ref. 19</span></td></tr>
               </tbody>
             </table>
           </div>
@@ -482,26 +574,26 @@ footer.doc .warning b{color:var(--ink);letter-spacing:.14em;text-transform:upper
                 <tr><th>Date</th><th>Provenance</th><th>Object / Record</th><th>Accession</th></tr>
               </thead>
               <tbody>
-                <tr><td class="n">c. 3200 BCE</td><td>Lower Mesopotamia</td><td>Cylinder seal fragment; grinning ovoid with two attendants</td><td class="n">UR&#8209;IV/2211</td></tr>
-                <tr><td class="n">c. 2400 BCE</td><td>Nippur</td><td>Incantation tablet, <i>pir&#8209;tu&#8209;um</i> series, ll. 14&ndash;29</td><td class="n">NIP&#8209;A/0884</td></tr>
-                <tr><td class="n">c. 1600 BCE</td><td>Crete, east</td><td>Painted larnax panel, register 3</td><td class="n">AEG&#8209;L/117</td></tr>
-                <tr><td class="n">c. 1200 BCE</td><td>Gulf coast, Mesoamerica</td><td>Basalt fragment, carved ovoid face</td><td class="n">GC&#8209;B/44</td></tr>
-                <tr><td class="n">c. 700 BCE</td><td>Nimrud</td><td>Apotropaic plaque; Seven Souls list in fixed order &sect;</td><td class="n">NMR&#8209;P/019</td></tr>
-                <tr><td class="n">c. 300 BCE</td><td>Fayum</td><td>Magical papyrus, binding formula against &ldquo;the call&rdquo;</td><td class="n">FYM&#8209;P/6021</td></tr>
-                <tr><td class="n">79 CE</td><td>Pompeii</td><td>Wall graffito, House of the Bronze Lamp</td><td class="n">POM&#8209;G/3318</td></tr>
-                <tr><td class="n">c. 340 CE</td><td>Sicily, interior</td><td>Lead agrarian charm, &ldquo;the sweet rot&rdquo;</td><td class="n">SIC&#8209;C/072</td></tr>
-                <tr><td class="n">c. 900 CE</td><td>Lowland Mesoamerica</td><td>Codex fragment, 3 leaves, heavily abraded &sect;</td><td class="n">LM&#8209;CX/7</td></tr>
-                <tr><td class="n">c. 1180 CE</td><td>Iceland, north</td><td>Marginalia in a legal compendium; drawn, not written</td><td class="n">ISL&#8209;M/204</td></tr>
-                <tr><td class="n">1541 CE</td><td>New Spain</td><td>Belmonte chronicle, ff. 61r&ndash;64v, with woodcut</td><td class="n">BEL&#8209;CH/1</td></tr>
-                <tr><td class="n">1798 CE</td><td>Middle Egypt</td><td>Survey notebook, sketch and two lines of description</td><td class="n">EGS&#8209;N/88</td></tr>
-                <tr><td class="n">1888 CE</td><td>Private, London</td><td>Sale catalogue, lot 341, &ldquo;a curious fruit idol&rdquo;; lot withdrawn</td><td class="n">PRV&#8209;C/341</td></tr>
-                <tr><td class="n">1943 CE</td><td><span class="redact" data-deny="Clearance Orchard-3 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>Aerial photographic anomaly, sortie <span class="redact" data-deny="Clearance Orchard-3 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> &sect;</td><td class="n">&mdash;</td></tr>
-                <tr><td class="n">1963 CE</td><td>North Atlantic</td><td>Intercepted transmission, 41 s, unattributed (&ldquo;Rosewood&rdquo;) &sect;</td><td class="n">RSW&#8209;T/01</td></tr>
-                <tr><td class="n">1981 CE</td><td>Mexico</td><td>Erik expedition; textual corpus, Ancestor of Chaos</td><td class="n">MEX&#8209;E/1981</td></tr>
-                <tr><td class="n">1993 CE</td><td>Iraq</td><td>Arphan excavation; temple engravings, 6 panels</td><td class="n">IRQ&#8209;A/1993</td></tr>
-                <tr><td class="n">2003 CE</td><td>Nunavut</td><td>Soapstone carving, surface find, &ldquo;the quiet harvest&rdquo;</td><td class="n">NUN&#8209;S/12</td></tr>
-                <tr><td class="n">2011 CE</td><td>Antarctic interior</td><td>Ice&#8209;core inclusion, 2,410&nbsp;m; morphology consistent &sect;</td><td class="n">ANT&#8209;IC/2410</td></tr>
-                <tr><td class="n">2019 CE</td><td><span class="redact" data-deny="Clearance Orchard-4 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td><span class="redact" data-deny="Clearance Orchard-4 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td class="n">&mdash;</td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">c. 3200 BCE</span></td><td data-label="Provenance"><span class="v">Lower Mesopotamia</span></td><td data-label="Object / Record"><span class="v">Cylinder seal fragment; grinning ovoid with two attendants</span></td><td data-label="Accession" class="n"><span class="v">UR&#8209;IV/2211</span></td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">c. 2400 BCE</span></td><td data-label="Provenance"><span class="v">Nippur</span></td><td data-label="Object / Record"><span class="v">Incantation tablet, <i>pir&#8209;tu&#8209;um</i> series, ll. 14&ndash;29</span></td><td data-label="Accession" class="n"><span class="v">NIP&#8209;A/0884</span></td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">c. 1600 BCE</span></td><td data-label="Provenance"><span class="v">Crete, east</span></td><td data-label="Object / Record"><span class="v">Painted larnax panel, register 3</span></td><td data-label="Accession" class="n"><span class="v">AEG&#8209;L/117</span></td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">c. 1200 BCE</span></td><td data-label="Provenance"><span class="v">Gulf coast, Mesoamerica</span></td><td data-label="Object / Record"><span class="v">Basalt fragment, carved ovoid face</span></td><td data-label="Accession" class="n"><span class="v">GC&#8209;B/44</span></td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">c. 700 BCE</span></td><td data-label="Provenance"><span class="v">Nimrud</span></td><td data-label="Object / Record"><span class="v">Apotropaic plaque; Seven Souls list in fixed order &sect;</span></td><td data-label="Accession" class="n"><span class="v">NMR&#8209;P/019</span></td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">c. 300 BCE</span></td><td data-label="Provenance"><span class="v">Fayum</span></td><td data-label="Object / Record"><span class="v">Magical papyrus, binding formula against &ldquo;the call&rdquo;</span></td><td data-label="Accession" class="n"><span class="v">FYM&#8209;P/6021</span></td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">79 CE</span></td><td data-label="Provenance"><span class="v">Pompeii</span></td><td data-label="Object / Record"><span class="v">Wall graffito, House of the Bronze Lamp</span></td><td data-label="Accession" class="n"><span class="v">POM&#8209;G/3318</span></td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">c. 340 CE</span></td><td data-label="Provenance"><span class="v">Sicily, interior</span></td><td data-label="Object / Record"><span class="v">Lead agrarian charm, &ldquo;the sweet rot&rdquo;</span></td><td data-label="Accession" class="n"><span class="v">SIC&#8209;C/072</span></td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">c. 900 CE</span></td><td data-label="Provenance"><span class="v">Lowland Mesoamerica</span></td><td data-label="Object / Record"><span class="v">Codex fragment, 3 leaves, heavily abraded &sect;</span></td><td data-label="Accession" class="n"><span class="v">LM&#8209;CX/7</span></td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">c. 1180 CE</span></td><td data-label="Provenance"><span class="v">Iceland, north</span></td><td data-label="Object / Record"><span class="v">Marginalia in a legal compendium; drawn, not written</span></td><td data-label="Accession" class="n"><span class="v">ISL&#8209;M/204</span></td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">1541 CE</span></td><td data-label="Provenance"><span class="v">New Spain</span></td><td data-label="Object / Record"><span class="v">Belmonte chronicle, ff. 61r&ndash;64v, with woodcut</span></td><td data-label="Accession" class="n"><span class="v">BEL&#8209;CH/1</span></td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">1798 CE</span></td><td data-label="Provenance"><span class="v">Middle Egypt</span></td><td data-label="Object / Record"><span class="v">Survey notebook, sketch and two lines of description</span></td><td data-label="Accession" class="n"><span class="v">EGS&#8209;N/88</span></td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">1888 CE</span></td><td data-label="Provenance"><span class="v">Private, London</span></td><td data-label="Object / Record"><span class="v">Sale catalogue, lot 341, &ldquo;a curious fruit idol&rdquo;; lot withdrawn</span></td><td data-label="Accession" class="n"><span class="v">PRV&#8209;C/341</span></td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">1943 CE</span></td><td data-label="Provenance"><span class="v"><span class="redact" data-deny="Clearance Orchard-3 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></td><td data-label="Object / Record"><span class="v">Aerial photographic anomaly, sortie <span class="redact" data-deny="Clearance Orchard-3 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> &sect;</span></td><td data-label="Accession" class="n"><span class="v">&mdash;</span></td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">1963 CE</span></td><td data-label="Provenance"><span class="v">North Atlantic</span></td><td data-label="Object / Record"><span class="v">Intercepted transmission, 41 s, unattributed (&ldquo;Rosewood&rdquo;) &sect;</span></td><td data-label="Accession" class="n"><span class="v">RSW&#8209;T/01</span></td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">1981 CE</span></td><td data-label="Provenance"><span class="v">Mexico</span></td><td data-label="Object / Record"><span class="v">Erik expedition; textual corpus, Ancestor of Chaos</span></td><td data-label="Accession" class="n"><span class="v">MEX&#8209;E/1981</span></td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">1993 CE</span></td><td data-label="Provenance"><span class="v">Iraq</span></td><td data-label="Object / Record"><span class="v">Arphan excavation; temple engravings, 6 panels</span></td><td data-label="Accession" class="n"><span class="v">IRQ&#8209;A/1993</span></td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">2003 CE</span></td><td data-label="Provenance"><span class="v">Nunavut</span></td><td data-label="Object / Record"><span class="v">Soapstone carving, surface find, &ldquo;the quiet harvest&rdquo;</span></td><td data-label="Accession" class="n"><span class="v">NUN&#8209;S/12</span></td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">2011 CE</span></td><td data-label="Provenance"><span class="v">Antarctic interior</span></td><td data-label="Object / Record"><span class="v">Ice&#8209;core inclusion, 2,410&nbsp;m; morphology consistent &sect;</span></td><td data-label="Accession" class="n"><span class="v">ANT&#8209;IC/2410</span></td></tr>
+                <tr><td data-label="Date" class="n"><span class="v">2019 CE</span></td><td data-label="Provenance"><span class="v"><span class="redact" data-deny="Clearance Orchard-4 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></td><td data-label="Object / Record"><span class="v"><span class="redact" data-deny="Clearance Orchard-4 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></td><td data-label="Accession" class="n"><span class="v">&mdash;</span></td></tr>
               </tbody>
             </table>
           </div>
@@ -581,14 +673,14 @@ footer.doc .warning b{color:var(--ink);letter-spacing:.14em;text-transform:upper
                 <tr><th>Ref.</th><th>Date</th><th>Summary</th><th>Disposition</th></tr>
               </thead>
               <tbody>
-                <tr><td class="n">ORCHARD&#8209;1</td><td class="n">1963</td><td>41&#8209;second unattributed transmission (&ldquo;Rosewood&rdquo;) received on a disused maritime channel; content is a seven&#8209;item list in an unidentified language. Item order matches Ref.&nbsp;5.</td><td>Open</td></tr>
-                <tr><td class="n">ORCHARD&#8209;2</td><td class="n">1971</td><td>Storage relocation; crate ISL&#8209;M/204 logged out by a signature that does not correspond to any member of staff then or since.</td><td>Closed &mdash; admin.</td></tr>
-                <tr><td class="n">ORCHARD&#8209;3</td><td class="n">1988</td><td>Photographic survey of AEG&#8209;L/117 returned 36 frames; 34 show the panel as catalogued. Two do not. Negatives retained.</td><td>Open</td></tr>
-                <tr><td class="n">ORCHARD&#8209;4</td><td class="n">1994</td><td><span class="redact" data-deny="Clearance Orchard-4 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Four personnel reassigned.</td><td>Sealed</td></tr>
-                <tr><td class="n">ORCHARD&#8209;5</td><td class="n">2007</td><td>Belek sinkhole; a void opened beneath a surveyed field 90&nbsp;m from a catalogued boundary stone. Void walls bear tool marks. Void is not archaeologically datable.</td><td>Open</td></tr>
-                <tr><td class="n">ORCHARD&#8209;6</td><td class="n">2011</td><td>Ice&#8209;core inclusion ANT&#8209;IC/2410 recovered at a depth corresponding to c.&nbsp;9,000&nbsp;BP. Inclusion is not organic. Morphology consistent with &sect;4.0.</td><td>Open</td></tr>
-                <tr><td class="n">ORCHARD&#8209;7</td><td class="n">2019</td><td><span class="redact" data-deny="Clearance Orchard-4 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>Sealed</td></tr>
-                <tr><td class="n">ORCHARD&#8209;8</td><td class="n">2024</td><td>Routine inventory; item count for the Nimrud plaque series returned eight. The series contains seven.</td><td>Open</td></tr>
+                <tr><td data-label="Ref." class="n"><span class="v">ORCHARD&#8209;1</span></td><td data-label="Date" class="n"><span class="v">1963</span></td><td data-label="Summary"><span class="v">41&#8209;second unattributed transmission (&ldquo;Rosewood&rdquo;) received on a disused maritime channel; content is a seven&#8209;item list in an unidentified language. Item order matches Ref.&nbsp;5.</span></td><td data-label="Disposition"><span class="v">Open</span></td></tr>
+                <tr><td data-label="Ref." class="n"><span class="v">ORCHARD&#8209;2</span></td><td data-label="Date" class="n"><span class="v">1971</span></td><td data-label="Summary"><span class="v">Storage relocation; crate ISL&#8209;M/204 logged out by a signature that does not correspond to any member of staff then or since.</span></td><td data-label="Disposition"><span class="v">Closed &mdash; admin.</span></td></tr>
+                <tr><td data-label="Ref." class="n"><span class="v">ORCHARD&#8209;3</span></td><td data-label="Date" class="n"><span class="v">1988</span></td><td data-label="Summary"><span class="v">Photographic survey of AEG&#8209;L/117 returned 36 frames; 34 show the panel as catalogued. Two do not. Negatives retained.</span></td><td data-label="Disposition"><span class="v">Open</span></td></tr>
+                <tr><td data-label="Ref." class="n"><span class="v">ORCHARD&#8209;4</span></td><td data-label="Date" class="n"><span class="v">1994</span></td><td data-label="Summary"><span class="v"><span class="redact" data-deny="Clearance Orchard-4 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Four personnel reassigned.</span></td><td data-label="Disposition"><span class="v">Sealed</span></td></tr>
+                <tr><td data-label="Ref." class="n"><span class="v">ORCHARD&#8209;5</span></td><td data-label="Date" class="n"><span class="v">2007</span></td><td data-label="Summary"><span class="v">Belek sinkhole; a void opened beneath a surveyed field 90&nbsp;m from a catalogued boundary stone. Void walls bear tool marks. Void is not archaeologically datable.</span></td><td data-label="Disposition"><span class="v">Open</span></td></tr>
+                <tr><td data-label="Ref." class="n"><span class="v">ORCHARD&#8209;6</span></td><td data-label="Date" class="n"><span class="v">2011</span></td><td data-label="Summary"><span class="v">Ice&#8209;core inclusion ANT&#8209;IC/2410 recovered at a depth corresponding to c.&nbsp;9,000&nbsp;BP. Inclusion is not organic. Morphology consistent with &sect;4.0.</span></td><td data-label="Disposition"><span class="v">Open</span></td></tr>
+                <tr><td data-label="Ref." class="n"><span class="v">ORCHARD&#8209;7</span></td><td data-label="Date" class="n"><span class="v">2019</span></td><td data-label="Summary"><span class="v"><span class="redact" data-deny="Clearance Orchard-4 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></td><td data-label="Disposition"><span class="v">Sealed</span></td></tr>
+                <tr><td data-label="Ref." class="n"><span class="v">ORCHARD&#8209;8</span></td><td data-label="Date" class="n"><span class="v">2024</span></td><td data-label="Summary"><span class="v">Routine inventory; item count for the Nimrud plaque series returned eight. The series contains seven.</span></td><td data-label="Disposition"><span class="v">Open</span></td></tr>
               </tbody>
             </table>
           </div>
@@ -627,12 +719,12 @@ footer.doc .warning b{color:var(--ink);letter-spacing:.14em;text-transform:upper
                 <tr><th>Vector</th><th>Assessment</th><th>Confidence</th><th>Basis</th></tr>
               </thead>
               <tbody>
-                <tr><td>Existential ceiling</td><td><b>Severe</b></td><td>Moderate</td><td>Uniform textual claim of world&#8209;scale threat across 19 horizons</td></tr>
-                <tr><td>Current activity</td><td><b>Not demonstrated</b></td><td>Low</td><td>Post&#8209;1600 attestation decline; no verified contemporary event</td></tr>
-                <tr><td>Intelligence</td><td><b>Assessed present</b></td><td>Moderate</td><td>Consistent ascription of intent, preference and refusal</td></tr>
-                <tr><td>Distribution</td><td><b>Non&#8209;local</b></td><td>Moderate</td><td>Seven Souls structure; simultaneity in Ref. 8 and Ref. 14</td></tr>
-                <tr><td>Communicability</td><td><b>Possible</b></td><td>Low</td><td>Marchetti hypothesis; unresolved, see &sect;11.0</td></tr>
-                <tr><td>Containability</td><td><b>Not applicable</b></td><td>&mdash;</td><td>No object of containment has been identified</td></tr>
+                <tr><td data-label="Vector"><span class="v">Existential ceiling</span></td><td data-label="Assessment"><span class="v"><b>Severe</b></span></td><td data-label="Confidence"><span class="v">Moderate</span></td><td data-label="Basis"><span class="v">Uniform textual claim of world&#8209;scale threat across 19 horizons</span></td></tr>
+                <tr><td data-label="Vector"><span class="v">Current activity</span></td><td data-label="Assessment"><span class="v"><b>Not demonstrated</b></span></td><td data-label="Confidence"><span class="v">Low</span></td><td data-label="Basis"><span class="v">Post&#8209;1600 attestation decline; no verified contemporary event</span></td></tr>
+                <tr><td data-label="Vector"><span class="v">Intelligence</span></td><td data-label="Assessment"><span class="v"><b>Assessed present</b></span></td><td data-label="Confidence"><span class="v">Moderate</span></td><td data-label="Basis"><span class="v">Consistent ascription of intent, preference and refusal</span></td></tr>
+                <tr><td data-label="Vector"><span class="v">Distribution</span></td><td data-label="Assessment"><span class="v"><b>Non&#8209;local</b></span></td><td data-label="Confidence"><span class="v">Moderate</span></td><td data-label="Basis"><span class="v">Seven Souls structure; simultaneity in Ref. 8 and Ref. 14</span></td></tr>
+                <tr><td data-label="Vector"><span class="v">Communicability</span></td><td data-label="Assessment"><span class="v"><b>Possible</b></span></td><td data-label="Confidence"><span class="v">Low</span></td><td data-label="Basis"><span class="v">Marchetti hypothesis; unresolved, see &sect;11.0</span></td></tr>
+                <tr><td data-label="Vector"><span class="v">Containability</span></td><td data-label="Assessment"><span class="v"><b>Not applicable</b></span></td><td data-label="Confidence"><span class="v">&mdash;</span></td><td data-label="Basis"><span class="v">No object of containment has been identified</span></td></tr>
               </tbody>
             </table>
           </div>
@@ -819,23 +911,23 @@ footer.doc .warning b{color:var(--ink);letter-spacing:.14em;text-transform:upper
               <caption>Transcript IRQ&#8209;A/1993&#8209;03 &middot; tape 3 &middot; 00:41:02 &ndash; 00:44:16</caption>
               <thead><tr><th>Time</th><th>Spk</th><th>Content</th></tr></thead>
               <tbody>
-                <tr><td class="n">00:41:02</td><td class="n">A</td><td>You said the panels were in sequence. Sequence of what?</td></tr>
-                <tr><td class="n">00:41:09</td><td class="n">B</td><td>Of size. Panel one is small, about a hand. Panel six is the whole wall.</td></tr>
-                <tr><td class="n">00:41:20</td><td class="n">A</td><td>And the figure is the same in all six.</td></tr>
-                <tr><td class="n">00:41:24</td><td class="n">B</td><td>The same. Only bigger. And the people &mdash; there are people in panel one, at the edges, small. By panel four there are fewer. In six there are none.</td></tr>
-                <tr><td class="n">00:41:47</td><td class="n">A</td><td>Fewer, or smaller?</td></tr>
-                <tr><td class="n">00:41:51</td><td class="n">B</td><td>&hellip; Fewer.</td></tr>
-                <tr><td class="n">00:42:09</td><td class="n">A</td><td>Was there an inscription?</td></tr>
-                <tr><td class="n">00:42:12</td><td class="n">B</td><td>Under each one. Same three signs each time. The epigrapher said it is a counting formula. Like a tally.</td></tr>
-                <tr><td class="n">00:42:31</td><td class="n">A</td><td>Counting up or counting down?</td></tr>
-                <tr><td class="n">00:42:36</td><td class="n">B</td><td>He would not say. He asked to be taken back to the camp.</td></tr>
-                <tr><td class="n">00:43:04</td><td class="n">A</td><td><span class="redact" data-deny="Clearance Orchard-3 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>
-                <tr><td class="n">00:43:22</td><td class="n">B</td><td>No. I did not photograph the seventh panel.</td></tr>
-                <tr><td class="n">00:43:29</td><td class="n">A</td><td>You reported six panels.</td></tr>
-                <tr><td class="n">00:43:33</td><td class="n">B</td><td>Yes.</td></tr>
-                <tr><td class="n">00:43:38</td><td class="n">A</td><td>Dr. Arphan, you reported six panels.</td></tr>
-                <tr><td class="n">00:43:44</td><td class="n">B</td><td>Yes. I know what I reported.</td></tr>
-                <tr><td class="n">00:44:16</td><td class="n">&mdash;</td><td>[Interview suspended at the request of the interviewee. Not resumed.]</td></tr>
+                <tr><td data-label="Time" class="n"><span class="v">00:41:02</span></td><td data-label="Spk" class="n"><span class="v">A</span></td><td data-label="Content"><span class="v">You said the panels were in sequence. Sequence of what?</span></td></tr>
+                <tr><td data-label="Time" class="n"><span class="v">00:41:09</span></td><td data-label="Spk" class="n"><span class="v">B</span></td><td data-label="Content"><span class="v">Of size. Panel one is small, about a hand. Panel six is the whole wall.</span></td></tr>
+                <tr><td data-label="Time" class="n"><span class="v">00:41:20</span></td><td data-label="Spk" class="n"><span class="v">A</span></td><td data-label="Content"><span class="v">And the figure is the same in all six.</span></td></tr>
+                <tr><td data-label="Time" class="n"><span class="v">00:41:24</span></td><td data-label="Spk" class="n"><span class="v">B</span></td><td data-label="Content"><span class="v">The same. Only bigger. And the people &mdash; there are people in panel one, at the edges, small. By panel four there are fewer. In six there are none.</span></td></tr>
+                <tr><td data-label="Time" class="n"><span class="v">00:41:47</span></td><td data-label="Spk" class="n"><span class="v">A</span></td><td data-label="Content"><span class="v">Fewer, or smaller?</span></td></tr>
+                <tr><td data-label="Time" class="n"><span class="v">00:41:51</span></td><td data-label="Spk" class="n"><span class="v">B</span></td><td data-label="Content"><span class="v">&hellip; Fewer.</span></td></tr>
+                <tr><td data-label="Time" class="n"><span class="v">00:42:09</span></td><td data-label="Spk" class="n"><span class="v">A</span></td><td data-label="Content"><span class="v">Was there an inscription?</span></td></tr>
+                <tr><td data-label="Time" class="n"><span class="v">00:42:12</span></td><td data-label="Spk" class="n"><span class="v">B</span></td><td data-label="Content"><span class="v">Under each one. Same three signs each time. The epigrapher said it is a counting formula. Like a tally.</span></td></tr>
+                <tr><td data-label="Time" class="n"><span class="v">00:42:31</span></td><td data-label="Spk" class="n"><span class="v">A</span></td><td data-label="Content"><span class="v">Counting up or counting down?</span></td></tr>
+                <tr><td data-label="Time" class="n"><span class="v">00:42:36</span></td><td data-label="Spk" class="n"><span class="v">B</span></td><td data-label="Content"><span class="v">He would not say. He asked to be taken back to the camp.</span></td></tr>
+                <tr><td data-label="Time" class="n"><span class="v">00:43:04</span></td><td data-label="Spk" class="n"><span class="v">A</span></td><td data-label="Content"><span class="v"><span class="redact" data-deny="Clearance Orchard-3 Required">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></td></tr>
+                <tr><td data-label="Time" class="n"><span class="v">00:43:22</span></td><td data-label="Spk" class="n"><span class="v">B</span></td><td data-label="Content"><span class="v">No. I did not photograph the seventh panel.</span></td></tr>
+                <tr><td data-label="Time" class="n"><span class="v">00:43:29</span></td><td data-label="Spk" class="n"><span class="v">A</span></td><td data-label="Content"><span class="v">You reported six panels.</span></td></tr>
+                <tr><td data-label="Time" class="n"><span class="v">00:43:33</span></td><td data-label="Spk" class="n"><span class="v">B</span></td><td data-label="Content"><span class="v">Yes.</span></td></tr>
+                <tr><td data-label="Time" class="n"><span class="v">00:43:38</span></td><td data-label="Spk" class="n"><span class="v">A</span></td><td data-label="Content"><span class="v">Dr. Arphan, you reported six panels.</span></td></tr>
+                <tr><td data-label="Time" class="n"><span class="v">00:43:44</span></td><td data-label="Spk" class="n"><span class="v">B</span></td><td data-label="Content"><span class="v">Yes. I know what I reported.</span></td></tr>
+                <tr><td data-label="Time" class="n"><span class="v">00:44:16</span></td><td data-label="Spk" class="n"><span class="v">&mdash;</span></td><td data-label="Content"><span class="v">[Interview suspended at the request of the interviewee. Not resumed.]</span></td></tr>
               </tbody>
             </table>
           </div>
@@ -938,6 +1030,16 @@ footer.doc .warning b{color:var(--ink);letter-spacing:.14em;text-transform:upper
     root.setAttribute("data-theme",next);
     try{ localStorage.setItem(KEY,next); }catch(e){}
     label();
+  });
+})();
+
+(function(){
+  document.addEventListener("click",function(e){
+    var hit = e.target && e.target.closest ? e.target.closest(".redact") : null;
+    var wasOpen = hit && hit.classList.contains("deny-open");
+    var open = document.querySelectorAll(".redact.deny-open");
+    for(var i=0;i<open.length;i++){ open[i].classList.remove("deny-open"); }
+    if(hit && !wasOpen){ hit.classList.add("deny-open"); }
   });
 })();
 </script>
